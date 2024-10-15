@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="res/css/style.css">
+</head>
+<body>
+    <div class="calendarContainer">
+        <div class="dayContainer weekday">
+            <table id="calendar">
+                <thead>
+                    <tr>
+                        <th><strong>Monday</strong></th>
+                        <th><strong>Tuesday</strong></th>
+                        <th><strong>Wednesday</strong></th>
+                        <th><strong>Thursday</strong></th>
+                        <th><strong>Friday</strong></th>
+                        <th><strong>Saturday</strong></th>
+                        <th><strong>Sunday</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        const calendarBody = document.querySelector('#calendar tbody');
+        const timeSlots = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+
+        timeSlots.forEach(time => {
+            let row = document.createElement('tr');
+            for (let i = 0; i < 7; i++) {
+                let cell = document.createElement('td');
+                cell.textContent = time;
+                row.appendChild(cell);
+            }
+            calendarBody.appendChild(row);
+        });
+    </script>
+</body>
+</html>
