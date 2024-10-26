@@ -13,10 +13,14 @@ const dragStartCell = (ev) => {
     ev.dataTransfer.setData("cellId", ev.target.id);
 }
 
-const dragEndCell = (ev) => {
-    ev.target.ondragover = allowDrop;
-    ev.target.draggable = false;
-    ev.target.ondragstart = null; 
+const resetCell = (cellId) => {
+    const cell = document.getElementById(cellId);
+    cell.innerHTML = cell.innerHTML.split(" ")[0];
+    cell.ondragover = allowDrop;
+    cell.draggable = false;
+    cell.ondragstart = null; 
+    cell.style.setProperty("background-color", "white");
+    cell.style.setProperty("color", "black");
 }
 
 const dropOnCell = (ev) => {
@@ -27,22 +31,25 @@ const dropOnCell = (ev) => {
     const cellId = ev.dataTransfer.getData("cellId");
 
     if (cellId != "") {
-        const oldCell = document.getElementById(cellId);
-        oldCell.textContent = oldCell.textContent.split(" ")[0];
+        resetCell(cellId);
     } else {
         document.getElementById(eventId).remove();
     }
 
-    ev.target.textContent = ev.target.textContent + " " + eventName;
+    const cell = ev.target;
+    // make cell look like event
+    cell.innerHTML = cell.innerHTML + ` <span style="font-weight:bold">${eventName}</span>`;
+    cell.style.setProperty("background-color", "#4477CC");
+    cell.style.setProperty("color", "white");
 
     // make cell draggable
-    ev.target.draggable = true;
-    ev.target.dataset.eventId = eventId;
-    ev.target.dataset.eventName = eventName;
-    ev.target.ondragstart = dragStartCell;
+    cell.draggable = true;
+    cell.dataset.eventId = eventId;
+    cell.dataset.eventName = eventName;
+    cell.ondragstart = dragStartCell;
 
     // make cell not droppable
-    ev.target.ondragover = null;
+    cell.ondragover = null;
 }
 
 const dropOnEventList = (ev) => {
@@ -64,8 +71,7 @@ const dropOnEventList = (ev) => {
     newEvent.textContent = eventName;
     document.getElementById("eventList").appendChild(newEvent);
 
-    const oldCell = document.getElementById(cellId);
-    oldCell.textContent = oldCell.textContent.split(" ")[0];
+    resetCell(cellId);
 }
 
 
