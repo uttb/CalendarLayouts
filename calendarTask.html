@@ -25,13 +25,13 @@
                                     <th><strong>Sunday</strong></th>
                                 </tr>
                                 <tr>
-                                    <td id="Mon8" ondrop="drop(event)" ondragover="allowDrop(event)" >8</td>
-                                    <td id="Tue8" ondrop="drop(event)" ondragover="allowDrop(event)">8</td>
-                                    <td>8</td>
-                                    <td>8</td>
-                                    <td>8</td>
-                                    <td>8</td>
-                                    <td>8</td>
+                                    <td id="Mon8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Tue8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Wed8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Thu8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Fri8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Sat8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
+                                    <td id="Sun8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)" ondragend="dragEndCell(event)">8</td>
                                 </tr>
                                 <tr>
                                     <td>9</td>
@@ -148,10 +148,11 @@
                     </div>
                 </div>
             </main>
-            <aside id="EventSidebar" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <aside id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
                 <div>
                     <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
-                    <div class="dragEvent" draggable="true" ondragstart="dragStart(event)" id="drag1">Event</div>
+                    <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="drag1">Coffee</div>
+                    <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="drag2">Gym</div>
                 </div>
             </aside>
         </div>
