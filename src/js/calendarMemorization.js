@@ -1,12 +1,8 @@
 window.onload = async () => {
-    const participantGroup = 1;
+    //TODO use enum
+    const participantGroup = window.location.pathname.endsWith("novelCalendarMemorization.html") ? 1 : 0; 
+    
     const numberOfEvents = 22; // to debug generation set to 91
-
-    if (participantGroup === 1) {
-        await showCalendar("novelCalendar");
-    } else {
-        await showCalendar("basicCalendar");
-    }
 
     const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
     const cellsWithEvents = []
