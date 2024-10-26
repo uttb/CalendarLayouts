@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="res/css/style.css">
+        <script type="text/javascript" src="src/js/calendarTask.js"></script>
+    </head>
+    <body>
+        <div class="pageContainer">
+            <main>
+                <div class="calendarContainer">
+                    <div class="dayContainer weekday">
+                        <h4 class="dayTitle">Monday</h4>
+                        <table>
+                            <tr>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="Mon12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                <td id="Mon18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td id="Mon13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                <td id="Mon19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dayContainer weekday">
+                        <h4 class="dayTitle">Tuesday</h4>
+                        <table>
+                            <tr>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dayContainer weekday">
+                        <h4 class="dayTitle">Wednesday</h4>
+                        <table>
+                            <tr>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dayContainer weekday">
+                        <h4 class="dayTitle">Thursday</h4>
+                        <table>
+                            <tr>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dayContainer weekday">
+                        <h4 class="dayTitle">Friday</h4>
+                        <table>
+                            <tr>
+                                <th>Morning</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="dayContainer weekend">
+                        <h4 class="dayTitle">Weekend</h4>
+                        <table>
+                            <tr>
+                                <th class="weekendDayHeader">Saturday</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                                <th class="weekendDayHeader">Sunday</th>
+                                <th>Afternoon</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                                <td></td>
+                                <td>12</td>
+                                <td>18</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                                <td></td>
+                                <td>13</td>
+                                <td>19</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                                <td>8</td>
+                                <td>14</td>
+                                <td>20</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                                <td>9</td>
+                                <td>15</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                                <td>10</td>
+                                <td>16</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                                <td>11</td>
+                                <td>17</td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </main>
+            <aside id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
+                <div>
+                    <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
+                    <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="drag1">Coffee</div>
+                    <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="drag2">Gym</div>
+                </div>
+            </aside>
+        </div>
+    </body>
+</html>
