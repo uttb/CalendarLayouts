@@ -65,3 +65,68 @@
 .weekendDayHeader {
     font-weight: bold !important;
 }
+
+/* Introduction page CSS
+The button, container, and other element styles could be reused. */
+body, html { /* Can be changed or removed - puts elements in the middle and makes background grey *_*/
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f7f7f7;
+}
+
+.container {
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Style for each page section */
+.page { display: none; }
+.page.active { display: block; }
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin: 20px;
+}
+
+button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #555;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+label, input {
+  font-size: 16px;
+}
+
+form input {
+  width: calc(100% - 22px);
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}

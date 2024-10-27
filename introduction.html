@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Experiment Introduction</title>
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="res/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Page 1: Introduction -->
+    <div id="page1" class="page active">
+      <h2>Hello!</h2>
+      <p>Thank you for your time. We are conducting an experiment with the goal of testing how different calendar layouts affect memory. This test will take no more than 15 minutes. [CHANGE TEXT]</p>
+      <button onclick="nextPage(2)">Next</button>
+    </div>
+
+    <!-- Page 2: Terms and Conditions -->
+    <div id="page2" class="page">
+      <h2>Terms and Conditions</h2>
+      <p>Please read and accept the terms and conditions to continue. [CHANGE TEXT]</p>
+       <div class="terms-container">
+        <input type="checkbox" id="acceptTerms" onchange="document.getElementById('page2Next').disabled = !this.checked">
+        <label for="acceptTerms">I have read and accept the terms and conditions.</label>
+      </div>
+
+      <button id="page2Next" onclick="nextPage(3)" disabled>Next</button>
+    </div>
+
+    <!-- Page 3: Form for Age and Gender -->
+    <div id="page3" class="page">
+      <h2>Participant Information</h2>
+      <p>Please enter your details below to proceed with the experiment.</p>
+      <form id="participantForm">
+        <label for="age">Age:</label><br>
+        <input type="number" id="age" name="age" required><br>
+
+        <p><strong>Experiment Details:</strong></p>
+        <p>This experiment involves testing your memory using different calendar layouts. Your participation is completely voluntary, and you may withdraw at any time. [CHANGE TEXT]</p>
+        <button type="submit">Start Experiment</button>
+      </form>
+    </div>
+  </div>
+ <script src="script.js"></script>
+
+</body>
+</html>
