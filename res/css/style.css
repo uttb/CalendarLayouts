@@ -14,6 +14,7 @@
     display: flex;
 }
 
+/* TODO make design more responsive */
 main {
     flex: 1;
 }
@@ -37,10 +38,12 @@ aside {
 
 .dragEvent {
     font-family: "Noto Sans Display", sans-serif;
+    font-weight: bold;
     background-color: #4477CC;
     color: white;
-    padding: 8px;
+    padding: 4px;
     border-radius: 5px;
+    margin: 4px;
 }
 
 .calendarContainer {
@@ -96,6 +99,10 @@ aside {
 
 .weekend th {
     width: 80px;
+}
+
+.weekend td {
+    font-size: small;
 }
 
 .weekendDayHeader {

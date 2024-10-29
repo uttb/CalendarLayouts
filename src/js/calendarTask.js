@@ -1,4 +1,17 @@
-function allowDrop(ev) {
+const shuffleDragEvents = () => {
+    const dragEvents = document.getElementsByClassName("dragEvent");
+
+    for(let i = 0; i < dragEvents.length; i++) {
+        dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
+        dragEvents[i].textContent = eventTitles.pop();
+    }
+}
+
+window.onload = () => {
+    shuffleDragEvents();
+}
+
+const allowDrop = (ev) => {
     ev.preventDefault();
   }
   

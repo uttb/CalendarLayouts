@@ -1,5 +1,5 @@
 window.onload = async () => {
-    //TODO use enum
+    // TODO use enum
     const participantGroup = window.location.pathname.endsWith("novelCalendarMemorization.html") ? 1 : 0; 
     
     const numberOfEvents = 22; // to debug generation set to 91
@@ -35,6 +35,6 @@ window.onload = async () => {
 
         calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
         calendarCells[cellWithEvent].style.setProperty("color", "white");
-        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ' <span style="font-weight:bold">Event</span>';
+        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitles.pop()}</span>`;
     }
 }
