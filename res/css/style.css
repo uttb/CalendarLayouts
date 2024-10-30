@@ -130,3 +130,42 @@ form input {
   border: 1px solid #ccc;
   border-radius: 5px;
 }
+
+
+/* Style for the number memory task */
+.number-sequence {
+  font-size: 2em;
+  margin-bottom: 20px;
+  height: 1.5em;
+}
+
+.recall-section {
+  margin-bottom: 20px;
+}
+
+.recall-input {
+  width: 30px;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 5px;
+}
+
+
+/* Style for the simple calculations page */
+.task {
+  margin-bottom: 10px;
+}
+
+.answer {
+  width: 50px;
+  font-size: 1em;
+  text-align: center;
+}
+
+.results {
+  margin-top: 20px;
+}
+
+.result {
+  margin-bottom: 10px;
+}
