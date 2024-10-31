@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Display:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="res/css/style.css">
+        <link rel="stylesheet" href="res/css/calendarStyle.css">
         <script type="text/javascript" src="src/js/calendarTask.js"></script>
         <script type="text/javascript" src="src/js/events.js"></script>
     </head>
@@ -12,7 +12,7 @@
         <div class="pageContainer">
             <main>
                 <div class="calendarContainer" id="calendarContainer">
-                    <div class="weekContainer weekday">
+                    <div class="weekContainer">
                         <table id="calendar">
                             <thead>
                                 <tr>
@@ -148,9 +148,9 @@
                     </div>
                 </div>
             </main>
-            <aside id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
-                <div>
-                    <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
+            <aside>
+                <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
+                <div class="dragEventContainer" id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event1">Event</div>
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event2">Event</div>
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event3">Event</div>
