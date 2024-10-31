@@ -9,6 +9,7 @@ const shuffleDragEvents = () => {
 
 window.onload = () => {
     shuffleDragEvents();
+    showContinueButton();
 }
 
 const allowDrop = (ev) => {
@@ -87,4 +88,22 @@ const dropOnEventList = (ev) => {
     resetCell(cellId);
 }
 
+// TODO remove abillity to drop elements to sidebar when button is shown
+const showContinueButton = () => {
+    const element = document.getElementById("eventList");
+
+    const observer = new MutationObserver((mutations) => {
+    if (element.childElementCount === 0) {
+        const button = document.createElement("button");
+        button.textContent = "Continue"
+        button.id = "continueButton"
+        button.setAttribute("onclick", "javascript:window.location.href='/'")
+        eventList.appendChild(button);
+
+        observer.disconnect();
+    }
+    });
+
+    observer.observe(element, { childList: true });
+}
 
