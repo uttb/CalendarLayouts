@@ -37,4 +37,6 @@ window.onload = async () => {
         calendarCells[cellWithEvent].style.setProperty("color", "white");
         calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitles.pop()}</span>`;
     }
+
+    startCountdown();
 }
