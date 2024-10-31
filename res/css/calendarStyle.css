@@ -41,6 +41,15 @@ aside {
     overflow-y: scroll;
 }
 
+.asideText {
+    padding: 4px;
+    margin-bottom: 0px;
+}
+
+.countdown {
+    margin-top: 0px;
+}
+
 .dragEvent {
     font-family: "Noto Sans Display", sans-serif;
     font-weight: bold;
@@ -122,7 +131,7 @@ body, html { /* Can be changed or removed - puts elements in the middle and make
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   color: #333;
   background-color: #f7f7f7;
 }
