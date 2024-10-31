@@ -1,19 +1,57 @@
 /* novelCalendar.html */
 
+.dayContainer {
+    background-color: black;
+    width: 550px;
+    display: flex;
+    align-items: center;
+    margin: 0px 20px 20px 0px;
+}
+
+/* shared between calendars */
+
+.pageContainer {
+    display: flex;
+}
+
+/* TODO make design more responsive */
+main {
+    flex: 1;
+}
+aside {
+    width: calc(100% - 1120px - 10px);
+    background-color: #B0B0B0;
+    border-radius: 10px;
+}
+
+.dragTitle {
+    padding: 8px;
+    margin: 0px;
+    font-family: "Noto Sans Display", sans-serif;
+}
+
+.dragEventContainer {
+    background-color: white;
+    border-radius: 5px;
+    margin: 8px;
+}
+
+.dragEvent {
+    font-family: "Noto Sans Display", sans-serif;
+    font-weight: bold;
+    background-color: #4477CC;
+    color: white;
+    padding: 4px;
+    border-radius: 5px;
+    margin: 4px;
+}
+
 .calendarContainer {
     display: flex;
     flex-wrap: wrap;
     max-height: 800px;
     max-width: 900px;
     flex-direction: column;
-}
-
-.dayContainer {
-    background-color: black;
-    width: fit-content;
-    display: flex;
-    align-items: center;
-    margin: 0px 20px 20px 0px;
 }
 
 .dayTitle {
@@ -26,12 +64,13 @@
     font-family: "Noto Sans Display", sans-serif;
 }
 
-.dayContainer table {
+:is(.dayContainer, .weekContainer) table {
     border-collapse: collapse;
     background-color: white;
+    table-layout: fixed;
 }
 
-.dayContainer th, td {
+:is(.dayContainer, .weekContainer) th, td {
     border: 1px solid black;
     border-right: 3px solid black;
     padding: 8px;
@@ -39,18 +78,18 @@
     font-family: "Noto Sans Display", sans-serif;
 }
 
-.dayContainer th {
+:is(.dayContainer, .weekContainer) th {
     color: white;
     background-color: black;
     padding: 8px 0px 0px 2px;
     font-weight: initial;
 }
 
-.dayContainer td {
+:is(.dayContainer, .weekContainer) td {
     padding: 0px 0px 8px 2px;
 }
 
-.dayContainer tr:nth-child(odd) {
+:is(.dayContainer, .weekContainer) tr:nth-child(odd) {
     border-bottom: 3px solid black;
 }
 
@@ -60,6 +99,10 @@
 
 .weekend th {
     width: 80px;
+}
+
+.weekend td {
+    font-size: small;
 }
 
 .weekendDayHeader {
