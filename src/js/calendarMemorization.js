@@ -1,12 +1,11 @@
 window.onload = async () => {
-    // TODO use enum
-    const participantGroup = window.location.pathname.endsWith("novelCalendarMemorization.html") ? 1 : 0; 
+    const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
     
     const numberOfEvents = 22; // to debug generation set to 91
 
     const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
     const cellsWithEvents = []
-    if (participantGroup === 1) {
+    if (isParticipantInNovelGroup) {
         const blockedCells = []
 
         for(let i = 0; i < 73; i+=18) {
@@ -32,9 +31,23 @@ window.onload = async () => {
     }
 
     for (const cellWithEvent of cellsWithEvents) {
-
+        const eventTitle = eventTitles.pop();
         calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
         calendarCells[cellWithEvent].style.setProperty("color", "white");
-        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitles.pop()}</span>`;
+        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitle}</span>`;
+        calendarCells[cellWithEvent].dataset.eventName = eventTitle;
     }
+
+    const generatedCalendar = {}
+    const cells = document.getElementsByTagName("td");
+    for(cell of cells) {
+        if (cell.id == "") {
+            continue;
+        }
+        generatedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+    }
+
+    console.log(generatedCalendar); // TODO replace with proper handling 
+
+    startCountdown(isParticipantInNovelGroup);
 }

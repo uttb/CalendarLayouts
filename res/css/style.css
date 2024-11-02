@@ -1,112 +1,125 @@
-/* novelCalendar.html */
+/* novelCalendar */
 
 .dayContainer {
-    background-color: black;
-    width: 550px;
-    display: flex;
-    align-items: center;
-    margin: 0px 20px 20px 0px;
+  background-color: black;
+  width: 530px;
+  display: flex;
+  align-items: center;
+  margin: 0px 10px 10px 0px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* basicCalendar */
+
+.weekContainer {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 /* shared between calendars */
 
 .pageContainer {
-    display: flex;
+  display: flex;
+  margin-top: 10px;
 }
-
-/* TODO make design more responsive */
 main {
-    flex: 1;
+flex: 1;
 }
 aside {
-    width: calc(100% - 1120px - 10px);
-    background-color: #B0B0B0;
-    border-radius: 10px;
+  max-width: 200px;
+  background-color: white;
+  border-radius: 10px;
+  height: 700px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .dragTitle {
-    padding: 8px;
-    margin: 0px;
-    font-family: "Noto Sans Display", sans-serif;
+  padding: 4px;
+  margin: 0px;
 }
 
 .dragEventContainer {
-    background-color: white;
-    border-radius: 5px;
-    margin: 8px;
+  height: 514px;
+  overflow-y: scroll;
+}
+
+.asideText {
+  padding: 4px;
+  margin-bottom: 0px;
+}
+
+.countdown {
+  margin-top: 0px;
 }
 
 .dragEvent {
-    font-family: "Noto Sans Display", sans-serif;
-    font-weight: bold;
-    background-color: #4477CC;
-    color: white;
-    padding: 4px;
-    border-radius: 5px;
-    margin: 4px;
+  font-weight: bold;
+  background-color: #4477CC;
+  color: white;
+  padding: 4px;
+  border-radius: 5px;
+  margin: 4px;
 }
 
 .calendarContainer {
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 800px;
-    max-width: 900px;
-    flex-direction: column;
+  display: flex;
+  flex-wrap: wrap;
+  height: 720px;
+  width: 1070px;
+  margin-right: 20px;
+  flex-direction: column;
 }
 
 .dayTitle {
-    padding: 8px;
-    color: white;
-    writing-mode: vertical-rl;
-    transform: rotate(180deg);
-    margin: 0px;
-    align-self: flex-end;
-    font-family: "Noto Sans Display", sans-serif;
+  padding: 8px;
+  color: white;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin: 0px;
+  align-self: flex-end;
 }
 
-:is(.dayContainer, .weekContainer) table {
-    border-collapse: collapse;
-    background-color: white;
-    table-layout: fixed;
+table {
+  border-collapse: collapse;
+  background-color: white;
+  table-layout: fixed;
 }
 
-:is(.dayContainer, .weekContainer) th, td {
-    border: 1px solid black;
-    border-right: 3px solid black;
-    padding: 8px;
-    text-align: left;
-    font-family: "Noto Sans Display", sans-serif;
+.dayContainer table {
+  
+  width: 530px;
 }
 
-:is(.dayContainer, .weekContainer) th {
-    color: white;
-    background-color: black;
-    padding: 8px 0px 0px 2px;
-    font-weight: initial;
+th, td {
+  border: 1px solid black;
+  border-right: 3px solid black;
+  text-align: left;
+  overflow: hidden;
 }
 
-:is(.dayContainer, .weekContainer) td {
-    padding: 0px 0px 8px 2px;
+th {
+  color: white;
+  background-color: black;
+  padding: 8px 0px 0px 2px;
+  font-weight: initial;
 }
 
-:is(.dayContainer, .weekContainer) tr:nth-child(odd) {
-    border-bottom: 3px solid black;
+td {
+  height: 30px;
+  width: 162px;
+  padding: 0px 0px 0px 2px;
+  vertical-align: top;
 }
 
-.weekday th {
-    width: 165px;
-}
-
-.weekend th {
-    width: 80px;
+tr:nth-child(odd) {
+  border-bottom: 3px solid black;
 }
 
 .weekend td {
-    font-size: small;
+  font-size: small;
 }
 
 .weekendDayHeader {
-    font-weight: bold !important;
+  font-weight: bold !important;
 }
 
 /* Introduction page CSS
@@ -117,7 +130,7 @@ body, html { /* Can be changed or removed - puts elements in the middle and make
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: Arial, sans-serif;
+  font-family: "Noto Sans Display", sans-serif;
   color: #333;
   background-color: #f7f7f7;
 }

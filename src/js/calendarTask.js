@@ -9,6 +9,7 @@ const shuffleDragEvents = () => {
 
 window.onload = () => {
     shuffleDragEvents();
+    showContinueButton();
 }
 
 const allowDrop = (ev) => {
@@ -87,4 +88,37 @@ const dropOnEventList = (ev) => {
     resetCell(cellId);
 }
 
+const handleContinueClick = () => {
+    const submittedCalendar = {};
+    const cells = document.getElementsByTagName("td");
+    for(cell of cells) {
+        if (cell.id == "") {
+            continue;
+        }
+        submittedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+    }
+
+    console.log(submittedCalendar); // TODO replace with proper handling 
+    window.location.href = "/";
+}
+
+const showContinueButton = () => {
+    const element = document.getElementById("eventList");
+
+    const observer = new MutationObserver((mutations) => {
+    if (element.childElementCount === 0) {
+        const button = document.createElement("button");
+        button.textContent = "Continue"
+        button.id = "continueButton"
+        button.setAttribute("onclick", "handleContinueClick()")
+        element.appendChild(button);
+        element.setAttribute("ondragover", null);
+        element.setAttribute("ondrop", null);
+
+        observer.disconnect();
+    }
+    });
+
+    observer.observe(element, { childList: true });
+}
 
