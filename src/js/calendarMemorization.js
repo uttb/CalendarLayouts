@@ -1,12 +1,11 @@
 window.onload = async () => {
-    // TODO use enum
-    const participantGroup = window.location.pathname.endsWith("novelCalendarMemorization.html") ? 1 : 0; 
+    const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
     
     const numberOfEvents = 22; // to debug generation set to 91
 
     const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
     const cellsWithEvents = []
-    if (participantGroup === 1) {
+    if (isParticipantInNovelGroup) {
         const blockedCells = []
 
         for(let i = 0; i < 73; i+=18) {
@@ -31,12 +30,15 @@ window.onload = async () => {
         }
     }
 
+    const cellsWithEventsIds = []
     for (const cellWithEvent of cellsWithEvents) {
-
         calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
         calendarCells[cellWithEvent].style.setProperty("color", "white");
         calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitles.pop()}</span>`;
+        cellsWithEventsIds.push(calendarCells[cellWithEvent].id);
     }
 
-    startCountdown();
+    console.log(cellsWithEventsIds); // TODO remove
+
+    startCountdown(isParticipantInNovelGroup);
 }

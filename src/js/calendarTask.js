@@ -98,7 +98,10 @@ const showContinueButton = () => {
         button.textContent = "Continue"
         button.id = "continueButton"
         button.setAttribute("onclick", "javascript:window.location.href='/'")
-        eventList.appendChild(button);
+        element.appendChild(button);
+        element.setAttribute("ondragover", null);
+        element.setAttribute("ondrop", null);
+
 
         observer.disconnect();
     }
