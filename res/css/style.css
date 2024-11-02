@@ -125,24 +125,24 @@ tr:nth-child(odd) {
 /* Introduction page CSS
 The button, container, and other element styles could be reused. */
 body, html { /* Can be changed or removed - puts elements in the middle and makes background grey *_*/
-height: 100%;
-margin: 0;
-display: flex;
-justify-content: center;
-align-items: center;
-font-family: "Noto Sans Display", sans-serif;
-color: #333;
-background-color: #f7f7f7;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Noto Sans Display", sans-serif;
+  color: #333;
+  background-color: #f7f7f7;
 }
 
 .container {
-max-width: 600px;
-width: 100%;
-padding: 20px;
-background-color: #fff;
-border-radius: 10px;
-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-text-align: center;
+  max-width: 600px;
+  width: 100%;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* Style for each page section */
@@ -150,78 +150,78 @@ text-align: center;
 .page.active { display: block; }
 
 button {
-padding: 10px 20px;
-font-size: 16px;
-border: none;
-border-radius: 5px;
-cursor: pointer;
-background-color: #333;
-color: #fff;
-transition: background-color 0.3s;
-margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin: 20px;
 }
 
 button:disabled {
-background-color: #ddd;
-cursor: not-allowed;
+  background-color: #ddd;
+  cursor: not-allowed;
 }
 
 button:hover:not(:disabled) {
-background-color: #555;
+  background-color: #555;
 }
 
 input[type="checkbox"] {
-margin-right: 10px;
+  margin-right: 10px;
 }
 
 label, input {
-font-size: 16px;
+  font-size: 16px;
 }
 
 form input {
-width: calc(100% - 22px);
-padding: 8px;
-margin: 8px 0;
-font-size: 16px;
-border: 1px solid #ccc;
-border-radius: 5px;
+  width: calc(100% - 22px);
+  padding: 8px;
+  margin: 8px 0;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
 
 /* Style for the number memory task */
 .number-sequence {
-font-size: 2em;
-margin-bottom: 20px;
-height: 1.5em;
+  font-size: 2em;
+  margin-bottom: 20px;
+  height: 1.5em;
 }
 
 .recall-section {
-margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .recall-input {
-width: 30px;
-font-size: 1.5em;
-text-align: center;
-margin: 5px;
+  width: 30px;
+  font-size: 1.5em;
+  text-align: center;
+  margin: 5px;
 }
 
 
 /* Style for the simple calculations page */
 .task {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .answer {
-width: 50px;
-font-size: 1em;
-text-align: center;
+  width: 50px;
+  font-size: 1em;
+  text-align: center;
 }
 
 .results {
-margin-top: 20px;
+  margin-top: 20px;
 }
 
 .result {
-margin-bottom: 10px;
+  margin-bottom: 10px;
 }
