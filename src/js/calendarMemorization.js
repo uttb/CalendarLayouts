@@ -30,15 +30,24 @@ window.onload = async () => {
         }
     }
 
-    const cellsWithEventsIds = []
     for (const cellWithEvent of cellsWithEvents) {
+        const eventTitle = eventTitles.pop();
         calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
         calendarCells[cellWithEvent].style.setProperty("color", "white");
-        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitles.pop()}</span>`;
-        cellsWithEventsIds.push(calendarCells[cellWithEvent].id);
+        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitle}</span>`;
+        calendarCells[cellWithEvent].dataset.eventName = eventTitle;
     }
 
-    console.log(cellsWithEventsIds); // TODO remove
+    const generatedCalendar = {}
+    const cells = document.getElementsByTagName("td");
+    for(cell of cells) {
+        if (cell.id == "") {
+            continue;
+        }
+        generatedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+    }
+
+    console.log(generatedCalendar); // TODO replace with proper handling 
 
     startCountdown(isParticipantInNovelGroup);
 }
