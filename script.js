@@ -1,35 +1,27 @@
-// Function to switch pages by setting active class
-function nextPage(pageNumber) {
-    document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-    document.getElementById('page' + pageNumber).classList.add('active');
-}
 
-// Function to check if terms are accepted
-function checkAcceptance() {
-    const termsAccepted = document.getElementById('acceptTerms').checked;
-    document.getElementById('page2Next').disabled = !termsAccepted;
-}
-
-// // Form submission handler - if we process with this architecture, it should lead to the next page
-// document.getElementById('participantForm').onsubmit = function(event) {
-//     event.preventDefault();
-//     alert('Thank you! The experiment will now begin.');
-//     // Here you can add redirection or additional JS to start the experiment
-// };
-
-
-// For number recall memory test
+// Main script
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded'); // Debugging statement to ensure script is loaded
+    console.log('Script loaded'); // Debugging statement
 
+    // Number recall memory test variables
     const sequenceLength = 10;
     let numberSequence = [];
+    
+    // Simple calculation task variables
+    const numTasks = 4;
+    const operators = ['+', '-'];
+    let tasks = [];
 
+
+    // Function to check if terms are accepted
+    function checkAcceptance() {
+        const termsAccepted = document.getElementById('acceptTerms').checked;
+        document.getElementById('page2Next').disabled = !termsAccepted;
+    }
+
+    // For number recall memory test
     function generateNumberSequence(length) {
-        const sequence = [];
-        for (let i = 0; i < length; i++) {
-            sequence.push(Math.floor(Math.random() * 10));
-        }
+        const sequence = Array.from({ length }, () => Math.floor(Math.random() * 10));
         console.log('Generated sequence:', sequence); // Debugging statement
         return sequence;
     }
@@ -44,9 +36,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Displaying digit:', sequence[index]); // Debugging statement
                 index++;
                 setTimeout(() => {
-                    numberSequenceDiv.innerText = ''; // Clear the digit briefly
-                    setTimeout(displayNextDigit, 200); // Pause for 200ms before showing the next digit
-                }, 1000); // Display each digit for 1000ms
+                    numberSequenceDiv.innerText = '';
+                    setTimeout(displayNextDigit, 200);
+                }, 1000);
             } else {
                 numberSequenceDiv.style.display = 'none';
                 displayRecallInputs(sequence.length);
@@ -104,25 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Results saved'); // Debugging statement
     }
 
-    document.getElementById('startTask').addEventListener('click', function() {
-        numberSequence = generateNumberSequence(sequenceLength);
-        displayDigitsOneByOne(numberSequence);
-        document.getElementById('startTask').style.display = 'none';
-    });
-
-    document.getElementById('submitRecall').addEventListener('click', checkUserRecall);
-    document.getElementById('recallSection').addEventListener('input', handleInput);
-});
-
-
-// For the simple calcalution task
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded'); // Debugging statement to ensure script is loaded
-
-    const numTasks = 4;
-    const operators = ['+', '-'];
-    let tasks = [];
-
+    // Simple calculation task functions
     function generateRandomNumber(max) {
         return Math.floor(Math.random() * max) + 1;
     }
@@ -139,10 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function generateTasks(num) {
-        tasks = [];
-        for (let i = 0; i < num; i++) {
-            tasks.push(generateRandomTask());
-        }
+        tasks = Array.from({ length: num }, generateRandomTask);
         console.log('Generated tasks:', tasks); // Debugging statement
     }
 
@@ -178,8 +149,63 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Results saved'); // Debugging statement
     }
 
+    // Event listeners
+    document.getElementById('startTask').addEventListener('click', function() {
+        numberSequence = generateNumberSequence(sequenceLength);
+        displayDigitsOneByOne(numberSequence);
+        document.getElementById('startTask').style.display = 'none';
+    });
+
+    document.getElementById('submitRecall').addEventListener('click', checkUserRecall);
+    document.getElementById('recallSection').addEventListener('input', handleInput);
+
     document.getElementById('submitAnswers').addEventListener('click', submitAnswers);
 
+    // Generate tasks for the calculation task
     generateTasks(numTasks);
     displayTasks();
 });
+
+
+const dropArea = document.getElementById('dropArea');
+const fileList = document.getElementById('fileList');
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+dropArea.addEventListener(eventName, preventDefaults, false);
+document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+// Highlight the drop area when an item is dragged over
+['dragenter', 'dragover'].forEach(eventName => {
+dropArea.addEventListener(eventName, () => dropArea.classList.add('hover'), false);
+});
+['dragleave', 'drop'].forEach(eventName => {
+dropArea.addEventListener(eventName, () => dropArea.classList.remove('hover'), false);
+});
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false);
+
+// Prevent default behavior (Prevent file from being opened)
+function preventDefaults(e) {
+e.preventDefault();
+e.stopPropagation();
+}
+
+// Handle the dropped files
+function handleDrop(e) {
+const dt = e.dataTransfer;
+const files = dt.files;
+handleFiles(files);
+}
+
+function handleFiles(files) {
+// Clear the current list of files
+fileList.innerHTML = '';
+// Create a new list item for each file
+[...files].forEach(file => {
+  const listItem = document.createElement('div');
+  listItem.textContent = file.name; // Display the file name
+  fileList.appendChild(listItem); // Append it to the file list
+});
+}

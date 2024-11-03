@@ -1,10 +1,21 @@
 window.onload = async () => {
-    const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
+   // const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
     
     const numberOfEvents = 22; // to debug generation set to 91
 
     const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
     const cellsWithEvents = []
+//function isPageActive(pageId) {
+//    const page = document.getElementById(pageId);
+//    return page && page.style.display !== "none";
+//}
+
+
+    let isParticipantInNovelGroup = true;
+   // if (isPageActive("page5")) {
+    //    isParticipantInNovelGroup = true;
+    //}
+   
     if (isParticipantInNovelGroup) {
         const blockedCells = []
 
@@ -49,5 +60,5 @@ window.onload = async () => {
 
     console.log(generatedCalendar); // TODO replace with proper handling 
 
-    startCountdown(isParticipantInNovelGroup);
+ //   startCountdown(isParticipantInNovelGroup);
 }
