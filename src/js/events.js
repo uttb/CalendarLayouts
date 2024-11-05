@@ -38,7 +38,6 @@ const eventTitles = [
     "LabTime",
     "Swim",
     "Recap"
-]
+];
+
 shuffle(eventTitles);
-
-

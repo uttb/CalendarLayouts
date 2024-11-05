@@ -84,7 +84,7 @@
     <div id="page5" class="page" style="display: none;">
       <div class="pageContainer">
         <main>
-          <div class="calendarContainer" id="calendarContainer">
+          <div class="calendarContainer" id="calendarLayoutNovel" style="display: none;" >
             <div class="dayContainer weekday">
                 <h4 class="dayTitle">Monday</h4>
                 <table>
@@ -285,7 +285,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="dayContainer weekend">
+            <div class="dayContainer weekend" style="height: 226px;">
                 <h4 class="dayTitle">Weekend</h4>
                 <table>
                     <tr>
@@ -347,6 +347,140 @@
                 </table>
             </div>
           </div>
+          <div class="calendarContainer" id="calendarLayoutBasic" style="display: none;">
+            <div class="weekContainer weekday">
+                <table id="calendar">
+                    <thead>
+                        <tr>
+                            <th><strong>Monday</strong></th>
+                            <th><strong>Tuesday</strong></th>
+                            <th><strong>Wednesday</strong></th>
+                            <th><strong>Thursday</strong></th>
+                            <th><strong>Friday</strong></th>
+                            <th><strong>Saturday</strong></th>
+                            <th><strong>Sunday</strong></th>
+                        </tr>
+                        <tr>
+                            <td id="Mon_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Tue_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Wed_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Thu_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Fri_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Sat_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                            <td id="Sun_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Tue_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Wed_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Thu_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Fri_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Sat_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                            <td id="Sun_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Tue_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Wed_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Thu_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Fri_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Sat_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                            <td id="Sun_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Tue_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Wed_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Thu_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Fri_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Sat_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                            <td id="Sun_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Tue_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Wed_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Thu_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Fri_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Sat_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                            <td id="Sun_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Tue_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Wed_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Thu_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Fri_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Sat_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                            <td id="Sun_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Tue_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Wed_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Thu_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Fri_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Sat_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                            <td id="Sun_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Tue_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Wed_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Thu_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Fri_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Sat_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                            <td id="Sun_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Tue_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Wed_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Thu_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Fri_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Sat_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                            <td id="Sun_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Tue_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Wed_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Thu_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Fri_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Sat_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                            <td id="Sun_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Tue_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Wed_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Thu_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Fri_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Sat_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                            <td id="Sun_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Tue_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Wed_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Thu_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Fri_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Sat_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                            <td id="Sun_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                        </tr>
+                        <tr>
+                            <td id="Mon_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Tue_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Wed_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Thu_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Fri_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Sat_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                            <td id="Sun_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
         </main>
         <aside>
           <h3 class="dragTitle">Try to memorize the events shown in the calendar</h3>
@@ -361,7 +495,7 @@
     <div id="page7" class="page" style="display: none;">
         <div class="pageContainer">
             <main>
-                <div class="calendarContainer">
+                <div class="calendarContainer" id ="calendarLayoutNovelTask" style="display: none;">
                     <div class="dayContainer weekday">
                         <h4 class="dayTitle">Monday</h4>
                         <table>
@@ -624,6 +758,140 @@
                         </table>
                     </div>
                 </div>
+                <div class="calendarContainer" id="calendarLayoutBasicTask" style="display: none;">
+                    <div class="weekContainer">
+                        <table id="calendar">
+                            <thead>
+                                <tr>
+                                    <th><strong>Monday</strong></th>
+                                    <th><strong>Tuesday</strong></th>
+                                    <th><strong>Wednesday</strong></th>
+                                    <th><strong>Thursday</strong></th>
+                                    <th><strong>Friday</strong></th>
+                                    <th><strong>Saturday</strong></th>
+                                    <th><strong>Sunday</strong></th>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Tue_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Wed_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Thu_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Fri_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Sat_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                    <td id="Sun_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Tue_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Wed_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Thu_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Fri_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Sat_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                    <td id="Sun_9" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">9</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Tue_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Wed_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Thu_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Fri_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Sat_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                    <td id="Sun_10" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">10</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Tue_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Wed_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Thu_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Fri_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Sat_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                    <td id="Sun_11" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">11</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Tue_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Wed_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Thu_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Fri_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Sat_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                    <td id="Sun_12" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">12</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Tue_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Wed_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Thu_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Fri_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Sat_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                    <td id="Sun_13" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">13</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Tue_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Wed_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Thu_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Fri_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Sat_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                    <td id="Sun_14" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">14</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Tue_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Wed_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Thu_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Fri_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Sat_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                    <td id="Sun_15" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">15</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Tue_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Wed_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Thu_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Fri_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Sat_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                    <td id="Sun_16" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">16</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Tue_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Wed_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Thu_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Fri_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Sat_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                    <td id="Sun_17" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">17</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Tue_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Wed_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Thu_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Fri_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Sat_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                    <td id="Sun_18" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">18</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Tue_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Wed_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Thu_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Fri_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Sat_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                    <td id="Sun_19" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">19</td>
+                                </tr>
+                                <tr>
+                                    <td id="Mon_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Tue_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Wed_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Thu_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Fri_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Sat_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                    <td id="Sun_20" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">20</td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
             </main>
             <aside>
                 <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
@@ -659,32 +927,53 @@
   
     <!-- JavaScript to handle page transitions -->
     <script>
+      const calendarLayout = Math.random() < 0.5 ? 1 : 2;
+    </script>
+
+    <script>
       function nextPage(pageNum) {
         document.querySelectorAll('.page').forEach(page => {
           page.style.display = 'none';
         });
         const currentPage = document.getElementById(`page${pageNum}`);
         currentPage.style.display = 'block';
+
+        // Hide 'container' elements on pages 5 and 7, show otherwise
+        document.querySelectorAll('.container').forEach(container => {
+            container.style.display = (pageNum === 5 || pageNum === 7) ? 'none' : 'block';
+        });
+
         if (pageNum === 8) {
           document.getElementById('dropArea').style.display = 'block';
         } else {
           document.getElementById('dropArea').style.display = 'none';
         }
         if (pageNum === 5) {
-          startCountdown(true);
+            if (calendarLayout === 1) {
+                document.getElementById('calendarLayoutBasic').style.display = 'flex';
+            } else {
+                document.getElementById('calendarLayoutNovel').style.display = 'flex';
+            }
+            initializeCalendarMemorization();
+            startCountdown(true);
+
         }
-         // Hide 'container' elements on pages 8 and 6, show otherwise
-        document.querySelectorAll('.container').forEach(container => {
-        container.style.display = (pageNum === 5 || pageNum === 7) ? 'none' : 'block';
-      });
+        if (pageNum === 7) {
+            if (calendarLayout === 1) {
+                document.getElementById('calendarLayoutBasicTask').style.display = 'flex';
+            } else {
+                document.getElementById('calendarLayoutNovelTask').style.display = 'flex';
+            }
+        }
       }
     </script>
    
-  <script src="src/js/calendarTask.js"></script>
-  <script src="src/js/events.js"></script>
-  <script src="script.js"></script>
-  <script src="src/js/calendarMemorization.js"></script>
-  <script src="src/js/calendarMemorizationCountdown.js"></script>
+    <script src="src/js/events.js"></script> 
+    <script src="src/js/calendarMemorization.js"></script>
+    <script src="src/js/calendarTask.js"></script>
+    <script src="src/js/calendarMemorizationCountdown.js"></script>
+    <script src="script.js"></script>
+
 
 </body>
 </html>
