@@ -922,12 +922,13 @@
                 </div>
             </aside>
         </div>
-        <button onclick="nextPage(8)">Next</button> <!-- <button onclick="nextPage(100)">Next</button> to repeat, #TODO: add repeat functionality-->
+        <button onclick="handleContinueClick(); nextPage(8)">Next</button> <!-- <button onclick="nextPage(100)">Next</button> to repeat, #TODO: add repeat functionality-->
+
     </div>
   
     <!-- JavaScript to handle page transitions -->
     <script>
-      const calendarLayout = Math.random() < 0.5 ? 1 : 2;
+      window.calendarLayout = Math.random() < 0.5 ? 1 : 2;
     </script>
 
     <script>

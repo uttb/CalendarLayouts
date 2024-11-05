@@ -1,4 +1,30 @@
-async function initializeCalendarMemorization() {
+function initializeCalendarMemorization() {
+    const eventTitles = [
+        "Gym",
+        "Walk",
+        "Shop",
+        "Reading",
+        "Journal",
+        "Clean",
+        "Call",
+        "Baking",
+        "Relax",
+        "Work",
+        "Brief",
+        "Meeting",
+        "Plan",
+        "Train",
+        "Study",
+        "Yoga",
+        "Review",
+        "Code",
+        "Webinar",
+        "LabTime",
+        "Swim",
+        "Recap"
+    ];
+    
+    shuffle(eventTitles);
 
     const numberOfEvents = 22;
     const cellsWithEvents = [];
@@ -51,12 +77,12 @@ async function initializeCalendarMemorization() {
         calendarCells[cellWithEvent].dataset.eventName = eventTitle;
     }
 
-    const generatedCalendar = {};
+    window.generatedCalendar = {};
     const cells = document.getElementsByTagName("td");
     for (const cell of cells) {
         if (cell.id == "") continue;
-        generatedCalendar[cell.id] = cell.dataset?.eventName || false;
+        window.generatedCalendar[cell.id] = cell.dataset?.eventName || window.generatedCalendar[cell.id];
     }
 
-    console.log(generatedCalendar); // Replace with proper handling as needed
+    console.log(window.generatedCalendar); // Replace with proper handling as needed
 }

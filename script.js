@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', function() {
     const operators = ['+', '-'];
     let tasks = [];
 
+    let results = {
+        age: null,
+        calendarLayout: null,
+        recallTask: [],
+        calculationTask: [],
+        calendarTask: [],
+        timestamp: new Date().toISOString()
+    };
+
 
     // Function to check if terms are accepted
     function checkAcceptance() {
@@ -76,15 +85,20 @@ document.addEventListener('DOMContentLoaded', function() {
     function checkUserRecall() {
         const userInput = Array.from(document.querySelectorAll('.recall-input')).map(input => parseInt(input.value, 10));
         console.log('User input:', userInput); // Debugging statement
-        saveResults(numberSequence, userInput);
+        results.recallTask.push({
+            task: numberSequence,
+            answer: userInput
+        });
     }
 
-    function saveResults(sequence, userInput) {
-        const results = {
-            sequence: sequence,
-            userInput: userInput,
-            timestamp: new Date().toISOString()
-        };
+    function saveResults() {
+        const age = document.getElementById('age').value;
+        results.age = age;
+        results.calendarLayout = window.calendarLayout;
+        results.calendarTask.push({
+            task: window.generatedCalendar,
+            answer: window.submittedCalendar
+        });
 
         const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -133,21 +147,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function submitAnswers() {
         const answers = Array.from(document.querySelectorAll('.answer')).map(input => input.value);
-        const results = {
+        results.calculationTask.push({
             tasks: tasks,
             answers: answers,
-            timestamp: new Date().toISOString()
-        };
-
-        const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = 'results.json';
-        a.click();
-        URL.revokeObjectURL(url);
-        console.log('Results saved'); // Debugging statement
+        });
     }
+
+    // Make saveResults globally accessible
+    window.saveResults = saveResults;
 
     // Event listeners
     document.getElementById('startTask').addEventListener('click', function() {
@@ -158,7 +165,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     document.getElementById('submitRecall').addEventListener('click', checkUserRecall);
     document.getElementById('recallSection').addEventListener('input', handleInput);
-
     document.getElementById('submitAnswers').addEventListener('click', submitAnswers);
 
     // Generate tasks for the calculation task
@@ -171,16 +177,16 @@ const dropArea = document.getElementById('dropArea');
 const fileList = document.getElementById('fileList');
 // Prevent default drag behaviors
 ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-dropArea.addEventListener(eventName, preventDefaults, false);
-document.body.addEventListener(eventName, preventDefaults, false);
+    dropArea.addEventListener(eventName, preventDefaults, false);
+    document.body.addEventListener(eventName, preventDefaults, false);
 });
 
 // Highlight the drop area when an item is dragged over
 ['dragenter', 'dragover'].forEach(eventName => {
-dropArea.addEventListener(eventName, () => dropArea.classList.add('hover'), false);
+    dropArea.addEventListener(eventName, () => dropArea.classList.add('hover'), false);
 });
 ['dragleave', 'drop'].forEach(eventName => {
-dropArea.addEventListener(eventName, () => dropArea.classList.remove('hover'), false);
+    dropArea.addEventListener(eventName, () => dropArea.classList.remove('hover'), false);
 });
 
 // Handle dropped files
@@ -188,24 +194,24 @@ dropArea.addEventListener('drop', handleDrop, false);
 
 // Prevent default behavior (Prevent file from being opened)
 function preventDefaults(e) {
-e.preventDefault();
-e.stopPropagation();
+    e.preventDefault();
+    e.stopPropagation();
 }
 
 // Handle the dropped files
 function handleDrop(e) {
-const dt = e.dataTransfer;
-const files = dt.files;
-handleFiles(files);
+    const dt = e.dataTransfer;
+    const files = dt.files;
+    handleFiles(files);
 }
 
 function handleFiles(files) {
-// Clear the current list of files
-fileList.innerHTML = '';
-// Create a new list item for each file
-[...files].forEach(file => {
-  const listItem = document.createElement('div');
-  listItem.textContent = file.name; // Display the file name
-  fileList.appendChild(listItem); // Append it to the file list
-});
+    // Clear the current list of files
+    fileList.innerHTML = '';
+    // Create a new list item for each file
+    [...files].forEach(file => {
+        const listItem = document.createElement('div');
+        listItem.textContent = file.name; // Display the file name
+        fileList.appendChild(listItem); // Append it to the file list
+    });
 }

@@ -35,6 +35,8 @@ const resetCell = (cellId) => {
     cell.ondragstart = null; 
     cell.style.setProperty("background-color", "white");
     cell.style.setProperty("color", "black");
+    cell.removeAttribute("data-eventId");
+    cell.removeAttribute("data-eventName");
 }
 
 const dropOnCell = (ev) => {
@@ -89,7 +91,7 @@ const dropOnEventList = (ev) => {
 }
 
 const handleContinueClick = () => {
-    const submittedCalendar = {};
+    window.submittedCalendar = {};
     const cells = document.getElementsByTagName("td");
     for(cell of cells) {
         if (cell.id == "") {
@@ -97,9 +99,9 @@ const handleContinueClick = () => {
         }
         submittedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
     }
-
-    console.log(submittedCalendar); // TODO replace with proper handling 
-    window.location.href = "/";
+    console.log(window.submittedCalendar); // TODO replace with proper handling 
+    window.saveResults();
+    // window.location.href = "/";
 }
 
 const showContinueButton = () => {
@@ -110,7 +112,7 @@ const showContinueButton = () => {
         const button = document.createElement("button");
         button.textContent = "Continue"
         button.id = "continueButton"
-        button.setAttribute("onclick", "handleContinueClick()")
+        button.setAttribute("onclick", handleContinueClick)
         element.appendChild(button);
         element.setAttribute("ondragover", null);
         element.setAttribute("ondrop", null);
