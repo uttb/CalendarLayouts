@@ -49,6 +49,37 @@
       <button id="submitRecall" style="display: none;" onclick="nextPage(5)">Submit</button>
     </div>
 
+     <!-- Page 6: Calculations -->
+     <div id="page6" class="page" style="display: none;">
+        <h1>Simple Calculations</h1>
+        <div id="calculations" class="calculations"></div>
+        <button id="submitAnswers" onclick="nextPage(7)">Submit</button>
+        <div id="results" class="results"></div>
+    </div>
+
+      <!-- Page 9: Thank You Page -->
+    <div id="page9" class="page" style="display: none;">
+        <h2>Thank you for your participation!</h2>
+    </div>
+
+    <div id="page100" class="page" style="display: none;">
+        <h2>Now you will perform the same task!</h2>
+        <button onclick="nextPage(5)">Finish experiment</button>
+    </div>
+
+     <!-- Page 8: Drag & Drop File Upload -->
+    <div id="page8" class="page" style="display: none;">
+        <h2>Drag & Drop File Upload</h2>
+        <div id="dropArea" class="drop-area">
+          <p>Drag & drop files here or click to upload.</p>
+          <input type="file" id="fileElem" multiple accept="*/*" style="display:none;" onchange="handleFiles(this.files)">
+          <label for="fileElem" style="cursor: pointer;">Upload a file</label>
+        </div>
+        <div id="fileList"></div>
+        <button onclick="nextPage(9)">Finish experiment</button>
+    </div>
+</div>
+
     <!-- Page 5: Calendar Memorization -->
     <div id="page5" class="page" style="display: none;">
       <div class="pageContainer">
@@ -325,15 +356,6 @@
         </aside>
       </div>
       </div>
-    
-    <!-- Page 6: Calculations -->
-    <div id="page6" class="page" style="display: none;">
-        <h1>Simple Calculations</h1>
-        <div id="calculations" class="calculations"></div>
-        <button id="submitAnswers" onclick="nextPage(7)">Submit</button>
-        <div id="results" class="results"></div>
-        
-    </div>
 
     <!-- Page 7: Calendar task-->
     <div id="page7" class="page" style="display: none;">
@@ -634,29 +656,6 @@
         </div>
         <button onclick="nextPage(8)">Next</button> <!-- <button onclick="nextPage(100)">Next</button> to repeat, #TODO: add repeat functionality-->
     </div>
-
-    <!-- Page 8: Drag & Drop File Upload -->
-    <div id="page8" class="page" style="display: none;">
-        <h2>Drag & Drop File Upload</h2>
-        <div id="dropArea" class="drop-area">
-          <p>Drag & drop files here or click to upload.</p>
-          <input type="file" id="fileElem" multiple accept="*/*" style="display:none;" onchange="handleFiles(this.files)">
-          <label for="fileElem" style="cursor: pointer;">Upload a file</label>
-        </div>
-        <div id="fileList"></div>
-        <button onclick="nextPage(9)">Finish experiment</button>
-      </div>
-  
-      <!-- Page 9: Thank You Page -->
-      <div id="page9" class="page" style="display: none;">
-        <h2>Thank you for your participation!</h2>
-      </div>
-
-      <div id="page100" class="page" style="display: none;">
-        <h2>Now you will perform the same task!</h2>
-        <button onclick="nextPage(5)">Finish experiment</button>
-      </div>
-    </div>
   
     <!-- JavaScript to handle page transitions -->
     <script>
@@ -674,6 +673,10 @@
         if (pageNum === 5) {
           startCountdown(true);
         }
+         // Hide 'container' elements on pages 8 and 6, show otherwise
+        document.querySelectorAll('.container').forEach(container => {
+        container.style.display = (pageNum === 5 || pageNum === 7) ? 'none' : 'block';
+      });
       }
     </script>
    
