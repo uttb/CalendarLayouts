@@ -11,10 +11,22 @@
     <div class="container">
         <h1>Simple Calculations</h1>
         <div id="calculations" class="calculations"></div>
-        <button id="submitAnswers">Submit</button>
+        <button id="submitAnswers" onclick="loadTask()">Submit</button>
         <div id="results" class="results"></div>
     </div>
+     <script>
+        function loadTask() {
+            // Retrieve the selected layout from sessionStorage
+            const selectedLayout = sessionStorage.getItem("selectedLayout");
 
+            // Check if "novelLayout" was selected and load the appropriate task page
+            if (selectedLayout === "novelCalendarMemorization.html") {
+                window.location.href = "novelCalendarTask.html";
+            } else {
+                window.location.href = "basicCalendarTask.html";
+            }
+        }
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

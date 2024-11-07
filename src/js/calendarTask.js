@@ -89,7 +89,7 @@ const dropOnEventList = (ev) => {
 }
 
 const handleContinueClick = () => {
-    const submittedCalendar = {};
+     const submittedCalendar = {};
     const cells = document.getElementsByTagName("td");
     for(cell of cells) {
         if (cell.id == "") {
@@ -98,8 +98,9 @@ const handleContinueClick = () => {
         submittedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
     }
 
-    console.log(submittedCalendar); // TODO replace with proper handling 
-    window.location.href = "/";
+    console.log(submittedCalendar); // TODO replace with proper handling
+    //window.location.href = "/";
+    window.saveResults();
 }
 
 const showContinueButton = () => {

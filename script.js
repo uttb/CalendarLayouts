@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const sequenceLength = 10;
     let numberSequence = [];
 
+
     function generateNumberSequence(length) {
         const sequence = [];
         for (let i = 0; i < length; i++) {
@@ -87,12 +88,14 @@ document.addEventListener('DOMContentLoaded', function() {
         saveResults(numberSequence, userInput);
     }
 
-    function saveResults(sequence, userInput) {
-        const results = {
-            sequence: sequence,
-            userInput: userInput,
-            timestamp: new Date().toISOString()
-        };
+      function saveResults() {
+        const age = document.getElementById('age').value;
+        results.age = age;
+        results.calendarLayout = window.calendarLayout;
+        results.calendarTask.push({
+            task: window.generatedCalendar,
+            answer: window.submittedCalendar
+        });
 
         const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
         const url = URL.createObjectURL(blob);
@@ -183,3 +186,61 @@ document.addEventListener('DOMContentLoaded', function() {
     generateTasks(numTasks);
     displayTasks();
 });
+
+const dropArea = document.getElementById('dropArea');
+const fileList = document.getElementById('fileList');
+// Prevent default drag behaviors
+['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+dropArea.addEventListener(eventName, preventDefaults, false);
+document.body.addEventListener(eventName, preventDefaults, false);
+});
+
+// Highlight the drop area when an item is dragged over
+['dragenter', 'dragover'].forEach(eventName => {
+dropArea.addEventListener(eventName, () => dropArea.classList.add('hover'), false);
+});
+['dragleave', 'drop'].forEach(eventName => {
+dropArea.addEventListener(eventName, () => dropArea.classList.remove('hover'), false);
+});
+
+// Handle dropped files
+dropArea.addEventListener('drop', handleDrop, false);
+
+// Prevent default behavior (Prevent file from being opened)
+function preventDefaults(e) {
+e.preventDefault();
+e.stopPropagation();
+}
+
+// Handle the dropped files
+function handleDrop(e) {
+const dt = e.dataTransfer;
+const files = dt.files;
+handleFiles(files);
+}
+
+function handleFiles(files) {
+// Clear the current list of files
+fileList.innerHTML = '';
+// Create a new list item for each file
+[...files].forEach(file => {
+  const listItem = document.createElement('div');
+  listItem.textContent = file.name; // Display the file name
+  fileList.appendChild(listItem); // Append it to the file list
+});
+}
+
+function loadRandomLayout() {
+    // Array with the layout file names
+    const layouts = ["novelCalendarMemorization.html", "basicCalendarMemorization.html"];
+
+    // Randomly select one of the layouts
+    const randomLayout = layouts[Math.floor(Math.random() * layouts.length)];
+
+    // Store the selected layout in sessionStorage
+    sessionStorage.setItem("selectedLayout", randomLayout);
+
+    // Navigate to the chosen layout
+    window.location.href = randomLayout;
+}
+

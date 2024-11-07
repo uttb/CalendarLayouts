@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Experiment Introduction</title>
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="res/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+
+     <!-- Drag & Drop File Upload -->
+    <div id="page1" class="page active">
+       <h2>Drag & Drop File Upload</h2>
+        <p>Drag & drop files here or click to upload.</p>
+        <div id="dropArea" class="dropArea"></div>
+         <input type="file" id="fileElem" multiple accept="*/*" onchange="handleFiles(this.files)" style="display: none;">
+          <label for="fileElem" style="cursor: pointer;">Upload a file</label>
+        <div id="fileList"></div>
+        <button onclick="nextPage(2)">Finish experiment</button>
+    </div>
+
+    <!-- Thank You Page -->
+    <div id="page2" class="page">
+      <h2>Thank you for your participation!</h2>
+    </div>
+  </div>
+ <script src="script.js"></script>
+
+</body>
+</html>

@@ -7,8 +7,36 @@
         <link rel="stylesheet" href="res/css/style.css">
         <script type="text/javascript" src="src/js/calendarTask.js"></script>
         <script type="text/javascript" src="src/js/events.js"></script>
+        <script defer>
+        // Define a key for this page
+        const pageName = "novelCalendarTask";
+
+        let visitCount = sessionStorage.getItem(pageName) || 0;
+        visitCount = parseInt(visitCount) + 1;
+        console.log("visit count", visitCount)
+        // Update the count in localStorage
+        sessionStorage.setItem(pageName, visitCount);
+
+        // Function to update button behavior based on visit count
+        function updateButton() {
+            const button = document.getElementById("nextButton");
+
+            // Check if the visit count has reached 3
+            if (visitCount >= 4) {
+                // Redirect to 'endPages.html' when button is clicked
+                button.onclick = function() {
+                    window.location.href = "closingPages.html";
+                };
+            } else {
+                // Redirect to 'inBetween.html' when button is clicked
+                button.onclick = function() {
+                    window.location.href = "inBetween.html";
+                };
+            }
+        }
+    </script>
     </head>
-    <body>
+    <body onload="updateButton()">
         <div class="pageContainer">
             <main>
                 <div class="calendarContainer">
@@ -304,5 +332,6 @@
                 </div>
             </aside>
         </div>
+            <button id="nextButton">I'm done</button>
     </body>
 </html>

@@ -38,16 +38,17 @@ window.onload = async () => {
         calendarCells[cellWithEvent].dataset.eventName = eventTitle;
     }
 
-    const generatedCalendar = {}
+     const generatedCalendar = {}
     const cells = document.getElementsByTagName("td");
     for(cell of cells) {
         if (cell.id == "") {
             continue;
         }
         generatedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+
     }
 
-    console.log(generatedCalendar); // TODO replace with proper handling 
+    console.log(generatedCalendar); // TODO replace with proper handling
 
     startCountdown(isParticipantInNovelGroup);
 }

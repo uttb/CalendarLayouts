@@ -36,13 +36,19 @@
       <form id="participantForm">
         <label for="age">Age:</label><br>
         <input type="number" id="age" name="age" required><br>
-
         <p><strong>Experiment Details:</strong></p>
         <p>This experiment involves testing your memory using different calendar layouts. Your participation is completely voluntary, and you may withdraw at any time. [CHANGE TEXT]</p>
         <button type="submit">Start Experiment</button>
       </form>
     </div>
   </div>
+  <script>
+  // Prevent form submission and redirect
+  document.getElementById("participantForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent the default form submission
+    window.location.href = "numberMemory.html"; // Redirect to numberMemory.html
+  });
+</script>
  <script src="script.js"></script>
 
 </body>

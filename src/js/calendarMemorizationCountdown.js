@@ -1,6 +1,6 @@
 const startCountdown = (isParticipantInNovelGroup) => {
 
-    let timeLeft = 179; // set to desired time minus one second. // TODO fix // remember to also update the time in html 
+    let timeLeft = 10; // set to desired time minus one second. // TODO fix // remember to also update the time in html
 
     const countdownElement = document.getElementById("countdown");
     const countdownTimer = setInterval(() => {
@@ -12,7 +12,7 @@ const startCountdown = (isParticipantInNovelGroup) => {
 
       if (timeLeft <= 0) {
         clearInterval(countdownTimer);
-        window.location.href = `/${isParticipantInNovelGroup ? 'novelCalendarTask.html' : 'basicCalendarTask.html'}`;
+        window.location.href = 'calculations.html'//`/${isParticipantInNovelGroup ? 'novelCalendarTask.html' : 'basicCalendarTask.html'}`;
       }
 
       timeLeft -= 1;
