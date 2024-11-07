@@ -1,3 +1,5 @@
+const pageName = 'calendarTask';
+
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
 
@@ -10,6 +12,7 @@ const shuffleDragEvents = () => {
 window.onload = () => {
     shuffleDragEvents();
     showContinueButton();
+    updatePageCount();
 }
 
 const allowDrop = (ev) => {
@@ -89,7 +92,7 @@ const dropOnEventList = (ev) => {
 }
 
 const handleContinueClick = () => {
-     const submittedCalendar = {};
+    const submittedCalendar = {};
     const cells = document.getElementsByTagName("td");
     for(cell of cells) {
         if (cell.id == "") {
@@ -99,8 +102,18 @@ const handleContinueClick = () => {
     }
 
     console.log(submittedCalendar); // TODO replace with proper handling
-    //window.location.href = "/";
-    window.saveResults();
+
+    const visitCount = sessionStorage.getItem(pageName) || 0;
+    // Check if the visit count has reached 3
+    if (visitCount >= 4) {
+        // Redirect to 'endPages.html' when button is clicked
+        window.location.href = "closingPages.html";
+    } else {
+        // Redirect to 'inBetween.html' when button is clicked
+        window.location.href = "inBetween.html";
+    }
+
+    // TODO broken :( window.saveResults(); 
 }
 
 const showContinueButton = () => {
@@ -121,5 +134,13 @@ const showContinueButton = () => {
     });
 
     observer.observe(element, { childList: true });
+}
+
+const updatePageCount = () => {
+    let visitCount = sessionStorage.getItem(pageName) || 0;
+    visitCount = parseInt(visitCount) + 1;
+    console.log("visit count", visitCount)
+    // Update the count in localStorage
+    sessionStorage.setItem(pageName, visitCount);
 }
 

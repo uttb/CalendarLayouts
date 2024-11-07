@@ -7,28 +7,8 @@
         <link rel="stylesheet" href="res/css/style.css">
         <script type="text/javascript" src="src/js/calendarTask.js"></script>
         <script type="text/javascript" src="src/js/events.js"></script>
-        <script defer>
-        const pageName = "basicCalendarTask";
-        let visitCount = sessionStorage.getItem(pageName) || 0;
-        visitCount = parseInt(visitCount) + 1;
-        sessionStorage.setItem(pageName, visitCount);
-
-        function updateButton() {
-            const button = document.getElementById("nextButton");
-
-            if (visitCount >= 4) {
-                button.onclick = function() {
-                    window.location.href = "closingPages.html";
-                };
-            } else {
-                button.onclick = function() {
-                    window.location.href = "inBetween.html";
-                };
-            }
-        }
-        </script>
     </head>
-    <body onload="updateButton()">
+    <body>
         <div class="pageContainer">
             <main>
                 <div class="calendarContainer" id="calendarContainer">
@@ -195,6 +175,5 @@
                 </div>
             </aside>
         </div>
-            <button id="nextButton">I'm done</button>
     </body>
 </html>
