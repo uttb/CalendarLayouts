@@ -13,6 +13,7 @@ window.onload = () => {
     shuffleDragEvents();
     showContinueButton();
     updatePageCount();
+    startCountdown(360);
 }
 
 const allowDrop = (ev) => {

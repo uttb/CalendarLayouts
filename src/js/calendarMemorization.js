@@ -50,5 +50,5 @@ window.onload = async () => {
 
     console.log(generatedCalendar); // TODO replace with proper handling
 
-    startCountdown(isParticipantInNovelGroup);
+    startCountdown(180, 'calculations.html');
 }
