@@ -1,3 +1,11 @@
+const pageName = 'calendarTask';
+const taskData = {
+    events: {},
+    startTimeStamp: null,
+    endTimeStamp: null,
+    taskNumber: null,
+};
+
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
 
@@ -10,6 +18,9 @@ const shuffleDragEvents = () => {
 window.onload = () => {
     shuffleDragEvents();
     showContinueButton();
+    updatePageCount();
+    startCountdown(360);
+    taskData.startTimeStamp = Date.now();
 }
 
 const allowDrop = (ev) => {
@@ -64,6 +75,8 @@ const dropOnCell = (ev) => {
 
     // make cell not droppable
     cell.ondragover = null;
+
+    logEvent(eventName, cell.id);
 }
 
 const dropOnEventList = (ev) => {
@@ -86,21 +99,26 @@ const dropOnEventList = (ev) => {
     document.getElementById("eventList").appendChild(newEvent);
 
     resetCell(cellId);
+
+    logEvent(eventName, 'eventList');
 }
 
 const handleContinueClick = () => {
-     const submittedCalendar = {};
-    const cells = document.getElementsByTagName("td");
-    for(cell of cells) {
-        if (cell.id == "") {
-            continue;
-        }
-        submittedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+    taskData.endTimeStamp = Date.now();
+
+    console.log(taskData); // TODO replace with proper handling
+
+    const visitCount = sessionStorage.getItem(pageName) || 0;
+    // Check if the visit count has reached 3
+    if (visitCount >= 4) {
+        // Redirect to 'endPages.html' when button is clicked
+        window.location.href = "closingPages.html";
+    } else {
+        // Redirect to 'inBetween.html' when button is clicked
+        window.location.href = "inBetween.html";
     }
 
-    console.log(submittedCalendar); // TODO replace with proper handling
-    //window.location.href = "/";
-    window.saveResults();
+    // TODO broken :( window.saveResults(); 
 }
 
 const showContinueButton = () => {
@@ -123,3 +141,31 @@ const showContinueButton = () => {
     observer.observe(element, { childList: true });
 }
 
+const updatePageCount = () => {
+    let visitCount = sessionStorage.getItem(pageName) || 0;
+    taskData.taskNumber = visitCount;
+    visitCount = parseInt(visitCount) + 1;
+    console.log("visit count", visitCount)
+    // Update the count in localStorage
+    sessionStorage.setItem(pageName, visitCount);
+}
+
+const logEvent = (eventName, dropId) => {
+    if (taskData.events[eventName] == undefined) {
+        taskData.events[eventName] = [
+            {
+                historyNumber: 0,
+                dropLocation: dropId,
+                dropTimeStamp: Date.now()
+            }
+        ];
+        return;
+    }
+    taskData.events[eventName].push(
+        {
+            historyNumber: taskData.events[eventName].length,
+            dropLocation: dropId,
+            dropTimeStamp: Date.now()
+        }
+    );
+}
