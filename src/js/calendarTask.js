@@ -1,3 +1,11 @@
+const pageName = 'calendarTask';
+const taskData = {
+    events: {},
+    startTimeStamp: null,
+    endTimeStamp: null,
+    taskNumber: null,
+};
+
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
 
@@ -10,6 +18,9 @@ const shuffleDragEvents = () => {
 window.onload = () => {
     shuffleDragEvents();
     showContinueButton();
+    updatePageCount();
+    startCountdown(360);
+    taskData.startTimeStamp = Date.now();
 }
 
 const allowDrop = (ev) => {
@@ -66,6 +77,8 @@ const dropOnCell = (ev) => {
 
     // make cell not droppable
     cell.ondragover = null;
+
+    logEvent(eventName, cell.id);
 }
 
 const dropOnEventList = (ev) => {
@@ -88,20 +101,30 @@ const dropOnEventList = (ev) => {
     document.getElementById("eventList").appendChild(newEvent);
 
     resetCell(cellId);
+
+    logEvent(eventName, 'eventList');
 }
 
 const handleContinueClick = () => {
-    window.submittedCalendar = {};
-    const cells = document.getElementsByTagName("td");
-    for(cell of cells) {
-        if (cell.id == "") {
-            continue;
-        }
-        submittedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+    taskData.endTimeStamp = Date.now();
+
+    console.log(taskData); // TODO replace with proper handling
+    let results = JSON.parse(sessionStorage.getItem("results"));
+    results.calendarTasks[results.calendarTasks.length - 1].answers.push(taskData);
+    sessionStorage.setItem("results", JSON.stringify(results));
+
+    const visitCount = sessionStorage.getItem(pageName) || 0;
+    // Check if the visit count has reached 3
+    if (visitCount >= 4) {
+        downloadResults();
+        // Redirect to 'endPages.html' when button is clicked
+        window.location.href = "closingPages.html";
+    } else {
+        // Redirect to 'inBetween.html' when button is clicked
+        window.location.href = "inBetween.html";
     }
-    console.log(window.submittedCalendar); // TODO replace with proper handling 
-    window.saveResults();
-    // window.location.href = "/";
+    
+    // TODO broken :( window.saveResults(); 
 }
 
 const showContinueButton = () => {
@@ -110,9 +133,9 @@ const showContinueButton = () => {
     const observer = new MutationObserver((mutations) => {
     if (element.childElementCount === 0) {
         const button = document.createElement("button");
-        button.textContent = "Continue"
-        button.id = "continueButton"
-        button.setAttribute("onclick", handleContinueClick)
+        button.textContent = "Continue";
+        button.id = "continueButton";
+        button.addEventListener("click", handleContinueClick);
         element.appendChild(button);
         element.setAttribute("ondragover", null);
         element.setAttribute("ondrop", null);
@@ -124,3 +147,54 @@ const showContinueButton = () => {
     observer.observe(element, { childList: true });
 }
 
+const updatePageCount = () => {
+    let visitCount = sessionStorage.getItem(pageName) || 0;
+    taskData.taskNumber = visitCount;
+    visitCount = parseInt(visitCount) + 1;
+    console.log("visit count", visitCount)
+    // Update the count in localStorage
+    sessionStorage.setItem(pageName, visitCount);
+}
+
+const logEvent = (eventName, dropId) => {
+    if (taskData.events[eventName] == undefined) {
+        taskData.events[eventName] = [
+            {
+                historyNumber: 0,
+                dropLocation: dropId,
+                dropTimeStamp: Date.now()
+            }
+        ];
+        return;
+    }
+    taskData.events[eventName].push(
+        {
+            historyNumber: taskData.events[eventName].length,
+            dropLocation: dropId,
+            dropTimeStamp: Date.now()
+        }
+    );
+}
+
+// Download results as a JSON file
+function downloadResults() {
+    const results = JSON.parse(sessionStorage.getItem('results'));
+    const layout = JSON.parse(sessionStorage.getItem('selectedLayout'));
+    results.layout = layout;
+
+    if (!results) {
+        console.error('No results found in sessionStorage');
+        return;
+    }
+
+    const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'results.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    console.log('Results downloaded as JSON file'); // Debugging statement
+}

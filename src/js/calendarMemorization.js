@@ -1,58 +1,19 @@
-function initializeCalendarMemorization() {
-    const eventTitles = [
-        "Gym",
-        "Walk",
-        "Shop",
-        "Reading",
-        "Journal",
-        "Clean",
-        "Call",
-        "Baking",
-        "Relax",
-        "Work",
-        "Brief",
-        "Meeting",
-        "Plan",
-        "Train",
-        "Study",
-        "Yoga",
-        "Review",
-        "Code",
-        "Webinar",
-        "LabTime",
-        "Swim",
-        "Recap"
-    ];
+window.onload = async () => {
+    const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
     
-    shuffle(eventTitles);
+    const numberOfEvents = 22; // to debug generation set to 91
 
-    const numberOfEvents = 22;
-    const cellsWithEvents = [];
-    let calendarCells = [];
-    let isParticipantInNovelGroup = false;
-
-    // Check if the novel calendar layout is visible
-    const calendarLayoutNovel = document.getElementById("calendarLayoutNovel");
-    if (calendarLayoutNovel && calendarLayoutNovel.style.display !== "none") {
-        isParticipantInNovelGroup = true;
-        calendarCells = calendarLayoutNovel.getElementsByTagName("td");
-    } else {
-        const calendarLayoutBasic = document.getElementById("calendarLayoutBasic");
-        if (calendarLayoutBasic) {
-            calendarCells = calendarLayoutBasic.getElementsByTagName("td");
-        }
-    }
-    console.log("Available events:", eventTitles)
-    console.log("Is participant in novel group:", isParticipantInNovelGroup);
-
+    const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
+    const cellsWithEvents = []
     if (isParticipantInNovelGroup) {
-        const blockedCells = [];
-        for (let i = 0; i < 73; i += 18) {
-            blockedCells.push(i + 0, i + 3, i + 11, i + 14, i + 17);
+        const blockedCells = []
+
+        for(let i = 0; i < 73; i+=18) {
+            blockedCells.push(i + 0, i + 3, i + 11, i + 14, i + 17)
         }
         blockedCells.push(90, 93, 96, 99, 110, 113, 116, 119, 122, 125);
 
-        for (let i = 0; i < numberOfEvents; i++) {
+        for(let i = 0; i < numberOfEvents; i++) {
             let randomCell;
             do {
                 randomCell = Math.floor(Math.random() * 126);
@@ -60,7 +21,7 @@ function initializeCalendarMemorization() {
             cellsWithEvents.push(randomCell);
         }
     } else {
-        for (let i = 0; i < numberOfEvents; i++) {
+        for(let i = 0; i < numberOfEvents; i++) {
             let randomCell;
             do {
                 randomCell = Math.floor(Math.random() * 91);
@@ -73,16 +34,28 @@ function initializeCalendarMemorization() {
         const eventTitle = eventTitles.pop();
         calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
         calendarCells[cellWithEvent].style.setProperty("color", "white");
-        calendarCells[cellWithEvent].innerHTML += ` <span style="font-weight:bold">${eventTitle}</span>`;
+        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitle}</span>`;
         calendarCells[cellWithEvent].dataset.eventName = eventTitle;
     }
 
-    window.generatedCalendar = {};
+    const generatedCalendar = {}
     const cells = document.getElementsByTagName("td");
-    for (const cell of cells) {
-        if (cell.id == "") continue;
-        window.generatedCalendar[cell.id] = cell.dataset?.eventName || window.generatedCalendar[cell.id];
+    for(cell of cells) {
+        if (cell.id == "") {
+            continue;
+        }
+        generatedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
+
     }
 
-    console.log(window.generatedCalendar); // Replace with proper handling as needed
+    console.log(generatedCalendar); // TODO replace with proper handling
+
+    let results = JSON.parse(sessionStorage.getItem("results"));
+    results.calendarTasks.push({
+        tasks: generatedCalendar,
+        answers: []
+    });
+    sessionStorage.setItem("results", JSON.stringify(results));
+
+    startCountdown(180, 'calculations.html');
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calendar Experiment Introduction</title>
+  <!-- Link to the external CSS file -->
+  <link rel="stylesheet" href="res/css/style.css">
+</head>
+<body>
+
+  <div class="container">
+       <h2>Now you will perform the same task!</h2>
+        <button onclick="loadTaskMemorization()">Process</button>
+  </div>
+    <script>
+        function loadTaskMemorization() {
+            // Retrieve the selected layout from sessionStorage
+            const selectedLayout = sessionStorage.getItem("selectedLayout");
+
+            // Check if "novelLayout" was selected and load the appropriate task page
+            if (selectedLayout === "novelCalendarMemorization.html") {
+                window.location.href = "novelCalendarMemorization.html";
+            } else {
+                window.location.href = "basicCalendarMemorization.html";
+            }
+        }
+    </script>
+ <script src="script.js"></script>
+
+</body>
+</html>
