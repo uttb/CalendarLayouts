@@ -8,18 +8,38 @@ const taskData = {
 
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
-
-    for(let i = 0; i < dragEvents.length; i++) {
-        dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
-        dragEvents[i].textContent = eventTitles.pop();
-    }
-}
+    const learningLength = learningEvents.length
+    if (sessionStorage.getItem("learning") === "true") {
+        for (let i = 0; i < dragEvents.length; i++) {
+                if (i < learningLength) {
+                    dragEvents[i].id = `dragEvent_${learningLength - learningEvents.length}`;
+                    dragEvents[i].textContent = learningEvents.pop();
+                } else {
+                    dragEvents[i].style.display = "none";
+                }
+        }
+        sessionStorage.setItem("learning", "false");}
+        else {
+            for(let i = 0; i < dragEvents.length; i++) {
+                dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
+                dragEvents[i].textContent = eventTitles.pop();
+            }
+        }
+        }
 
 window.onload = () => {
+      if (sessionStorage.getItem("learning") === "true") {
+        const asideTextElement = document.querySelector(".asideText");
+        if (asideTextElement) {
+            asideTextElement.textContent = "Palun saa tuttavaks antud kalendriga. Proovi asetada antud sündmused õigele kohale.";
+        }
+        startCountdown(120, 'startingExperiment.html');
+    } else {
+        startCountdown(360);
+    }
     shuffleDragEvents();
     showContinueButton();
     updatePageCount();
-    startCountdown(360);
     taskData.startTimeStamp = Date.now();
 }
 

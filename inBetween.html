@@ -13,19 +13,7 @@
        <h2>Now you will perform the same task!</h2>
         <button onclick="loadTaskMemorization()">Process</button>
   </div>
-    <script>
-        function loadTaskMemorization() {
-            // Retrieve the selected layout from sessionStorage
-            const selectedLayout = sessionStorage.getItem("selectedLayout");
 
-            // Check if "novelLayout" was selected and load the appropriate task page
-            if (selectedLayout === "novelCalendarMemorization.html") {
-                window.location.href = "novelCalendarMemorization.html";
-            } else {
-                window.location.href = "basicCalendarMemorization.html";
-            }
-        }
-    </script>
  <script src="script.js"></script>
 
 </body>
