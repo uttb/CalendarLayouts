@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // store results in sessionStorage
         let results = {
+            participantId: null,
             layout: null,
             recallTask: {
                 task: numberSequence,

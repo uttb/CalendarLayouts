@@ -32,10 +32,13 @@
     <!-- Page 3: Form for Age and Gender -->
     <div id="page3" class="page">
       <h2>Participant Information</h2>
-      <p>Please enter your details below to proceed with the experiment.</p>
+      <div class="survey-section">
+      <p>Please go the to link below and complete the survey.</p>
+      <a href="https://chatgpt.com/" target="_blank">Click here to complete the survey</a>
+      </div>
       <form id="participantForm">
-        <label for="age">Age:</label><br>
-        <input type="number" id="age" name="age" required><br>
+        <label for="key">ID given to you after completing the survey:</label><br>
+        <input type="text" id="key" name="key" required><br>
         <p><strong>Experiment Details:</strong></p>
         <p>This experiment involves testing your memory using different calendar layouts. Your participation is completely voluntary, and you may withdraw at any time. [CHANGE TEXT]</p>
         <button type="submit">Start Experiment</button>
@@ -47,6 +50,8 @@
   // Prevent form submission and redirect
   document.getElementById("participantForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
+    const participantID = document.getElementById("key").value;
+    sessionStorage.setItem("participantID", participantID);
     window.location.href = "numberMemory.html"; // Redirect to numberMemory.html
   });
 </script>

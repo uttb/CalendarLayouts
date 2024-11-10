@@ -135,7 +135,7 @@ const handleContinueClick = () => {
 
     const visitCount = sessionStorage.getItem(pageName) || 0;
     // Check if the visit count has reached 3
-    if (visitCount >= 4) {
+    if (visitCount >= 5) {
         downloadResults();
         // Redirect to 'endPages.html' when button is clicked
         window.location.href = "closingPages.html";
@@ -198,9 +198,11 @@ const logEvent = (eventName, dropId) => {
 
 // Download results as a JSON file
 function downloadResults() {
+    const participantId = JSON.parse(JSON.stringify(sessionStorage.getItem('participantID')));
     const results = JSON.parse(sessionStorage.getItem('results'));
-    const layout = JSON.parse(sessionStorage.getItem('selectedLayout'));
+    const layout = JSON.parse(JSON.stringify(sessionStorage.getItem('selectedLayout')));
     results.layout = layout;
+    results.participantId = participantId;
 
     if (!results) {
         console.error('No results found in sessionStorage');
