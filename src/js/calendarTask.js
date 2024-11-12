@@ -179,7 +179,7 @@ const logEvent = (eventName, dropId) => {
 // Download results as a JSON file
 function downloadResults() {
     const results = JSON.parse(sessionStorage.getItem('results'));
-    const layout = JSON.parse(sessionStorage.getItem('selectedLayout'));
+    const layout = sessionStorage.getItem('selectedLayout');
     results.layout = layout;
 
     if (!results) {
