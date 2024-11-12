@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // store results in sessionStorage
         let results = {
+            participantId: null,
             layout: null,
             recallTask: {
                 task: numberSequence,
@@ -110,7 +111,7 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.setItem("selectedLayout", randomLayout);
     
         // Navigate to the chosen layout
-        window.location.href = randomLayout;
+       // window.location.href = randomLayout;
     }
     
     document.getElementById('startTask').addEventListener('click', function() {
@@ -123,6 +124,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submitRecall').addEventListener('click', function() {
         checkUserRecall();
         loadRandomLayout();
+        loadTask();
     });
     document.getElementById('recallSection').addEventListener('input', handleInput);
 });
@@ -280,3 +282,15 @@ function loadTask() {
         window.location.href = "basicCalendarTask.html";
     }
 }
+function loadTaskMemorization() {
+    // Retrieve the selected layout from sessionStorage
+    const selectedLayout = sessionStorage.getItem("selectedLayout");
+
+    // Check if "novelLayout" was selected and load the appropriate task page
+    if (selectedLayout === "novelCalendarMemorization.html") {
+        window.location.href = "novelCalendarMemorization.html";
+    } else {
+        window.location.href = "basicCalendarMemorization.html";
+    }
+}
+

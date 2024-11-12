@@ -40,4 +40,13 @@ const eventTitles = [
     "Recap"
 ];
 
+const learningEvents =  [
+    "Reede, 15:00",
+    "Esmaspäev, 20:00",
+    "Pühapäev, 8:00",
+    "Laupäev, 19:00",
+    "Teisipäev, 11:00",
+    "Kolmapäev, 14:00",
+    "Neljapäev, 15:00"
+]
 shuffle(eventTitles);

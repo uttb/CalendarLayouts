@@ -246,3 +246,20 @@ form input {
   border-color: #005BB5;
   background-color: #f0f8ff;
 }
+.survey-section {
+  text-align: center;
+  margin: 30px;
+}
+
+.survey-section p {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  color: #333;
+}
+
+.survey-section .survey-link {
+  color: #5b7cfa;
+  text-decoration: underline;
+  font-weight: bold;
+  font-size: 1rem;
+}

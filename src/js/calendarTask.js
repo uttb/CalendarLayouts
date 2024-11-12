@@ -8,18 +8,38 @@ const taskData = {
 
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
-
-    for(let i = 0; i < dragEvents.length; i++) {
-        dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
-        dragEvents[i].textContent = eventTitles.pop();
-    }
-}
+    const learningLength = learningEvents.length
+    if (sessionStorage.getItem("learning") === "true") {
+        for (let i = 0; i < dragEvents.length; i++) {
+                if (i < learningLength) {
+                    dragEvents[i].id = `dragEvent_${learningLength - learningEvents.length}`;
+                    dragEvents[i].textContent = learningEvents.pop();
+                } else {
+                    dragEvents[i].style.display = "none";
+                }
+        }
+        sessionStorage.setItem("learning", "false");}
+        else {
+            for(let i = 0; i < dragEvents.length; i++) {
+                dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
+                dragEvents[i].textContent = eventTitles.pop();
+            }
+        }
+        }
 
 window.onload = () => {
+      if (sessionStorage.getItem("learning") === "true") {
+        const asideTextElement = document.querySelector(".asideText");
+        if (asideTextElement) {
+            asideTextElement.textContent = "Palun saa tuttavaks antud kalendriga. Proovi asetada antud sündmused õigele kohale.";
+        }
+        startCountdown(120, 'startingExperiment.html');
+    } else {
+        startCountdown(360);
+    }
     shuffleDragEvents();
     showContinueButton();
     updatePageCount();
-    startCountdown(360);
     taskData.startTimeStamp = Date.now();
 }
 
@@ -115,7 +135,7 @@ const handleContinueClick = () => {
 
     const visitCount = sessionStorage.getItem(pageName) || 0;
     // Check if the visit count has reached 3
-    if (visitCount >= 4) {
+    if (visitCount >= 5) {
         downloadResults();
         // Redirect to 'endPages.html' when button is clicked
         window.location.href = "closingPages.html";
@@ -178,9 +198,11 @@ const logEvent = (eventName, dropId) => {
 
 // Download results as a JSON file
 function downloadResults() {
+    const participantId = JSON.parse(JSON.stringify(sessionStorage.getItem('participantID')));
     const results = JSON.parse(sessionStorage.getItem('results'));
     const layout = sessionStorage.getItem('selectedLayout');
     results.layout = layout;
+    results.participantId = participantId;
 
     if (!results) {
         console.error('No results found in sessionStorage');
