@@ -3,7 +3,7 @@ window.onload = async () => {
 
     const visitCount = sessionStorage.getItem(pageName) || 0;
     const eventLayoutOrder = JSON.parse(sessionStorage.getItem("eventLayoutOrder")) || ['A', 'B', 'C', 'D'];
-    const eventLayout = eventLayoutOrder[visitCount]
+    const eventLayout = eventLayoutOrder[visitCount] || 'A'
 
     shuffle(eventTitles);
 
