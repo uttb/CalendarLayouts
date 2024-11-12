@@ -200,7 +200,7 @@ const logEvent = (eventName, dropId) => {
 function downloadResults() {
     const participantId = JSON.parse(JSON.stringify(sessionStorage.getItem('participantID')));
     const results = JSON.parse(sessionStorage.getItem('results'));
-    const layout = JSON.parse(JSON.stringify(sessionStorage.getItem('selectedLayout')));
+    const layout = sessionStorage.getItem('selectedLayout');
     results.layout = layout;
     results.participantId = participantId;
 
