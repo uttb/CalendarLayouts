@@ -109,7 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
         // Store the selected layout in sessionStorage
         sessionStorage.setItem("selectedLayout", randomLayout);
-    
+
+        // shuffleEventLayouts
+        const eventLayoutOrder = ['A', 'B', 'C', 'D'];
+        shuffle(eventLayoutOrder);
+        sessionStorage.setItem("eventLayoutOrder", JSON.stringify(eventLayoutOrder));
+        
         // Navigate to the chosen layout
        // window.location.href = randomLayout;
     }
