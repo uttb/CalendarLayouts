@@ -13,14 +13,23 @@
     <!-- Page 1: Introduction -->
     <div id="page1" class="page active">
       <h2>Tere tulemast!</h2>
-      <p>Täname antud uurimustöös osalemast. Projekti eesmärgiks on vaadelda ning võrrelda, kuidas erinevate kalendrite ülesehitused ajatajule ning info talletamisele mõjuvad. Eksperimendi tulemusi kasutatakse ainult antud teadustöö eesmärgil, mitte kaubanduslikuks otstarbeks. Eksperimendis osalemine võtab ligikaudu tund aega (60 minutit). Palume teil osalemise ajaks viibida vaikses keskkonnas, kus saate kindlad olla, et teie sooritust ei segata või katkestata. Eksperimendis osalemise vältel on võimalik igal hetkel sooritus katkestada.</p>
+        <p><strong>Täname antud uurimustöös osalemast.</strong></p>
+        <p>Projekti eesmärgiks on vaadelda ning võrrelda, kuidas erinevate kalendrite ülesehitused ajatajule ning info talletamisele mõjuvad.</p>
+
+        <p><strong>Eksperimendi tulemusi kasutatakse ainult antud teadustöö eesmärgil, mitte kaubanduslikuks otstarbeks.</strong></p>
+
+        <p>Eksperimendis osalemine võtab ligikaudu <strong>tund aega (60 minutit)</strong>.</p>
+
+        <p>Palume teil osalemise ajaks viibida vaikses keskkonnas, kus saate kindlad olla, et teie sooritust ei segata ega katkestata.</p>
+
+        <p><strong>Eksperimendis osalemise vältel on võimalik igal hetkel sooritus katkestada.</strong></p>
       <button onclick="nextPage(2)">Edasi</button>
     </div>
 
     <!-- Page 2: Terms and Conditions -->
     <div id="page2" class="page">
       <h2>Kasutustingimused</h2>
-      <p>Osaledes kinnitate, et nõustute järgnevate väidetega:</p>
+        <p><strong>Osaledes kinnitate, et nõustute järgnevate väidetega:</strong></p>
         <ul>
           <li>Annan nõusoleku enda andmete kogumiseks ja kasutamiseks teadustöö sihtotstarbel.</li>
           
@@ -48,48 +57,56 @@
     <div id="page3" class="page">
       <h2>Küsimustik</h2>
       <div class="survey-section">
-      <p>Alustuseks palun klikkige alloleval lingil ja täitke küsimustik.</p>
-      <a href="https://chatgpt.com/" target="_blank">Klikki siia, et täita küsimustik</a>
+        <p>Alustuseks palun klikkige alloleval lingil ja täitke küsimustik.</p>
+        <a href="https://chatgpt.com/" target="_blank">Klikki siia, et täita küsimustik</a>
       </div>
-      <form id="participantForm">
-        <label for="key">ID määratud Sulle peale küsimustiku sooritamist:</label><br>
-        <input type="text" id="key" name="key" required><br>
-        <p><strong>Eksperimendi üksikasjad:</strong></p>
-        <p>Eksperiment algab lühikese mäluharjutusega, millele järgneb nelja kordusega tsükkel. </p>
-        <p>Mäluharjutus annab meile parema ülevaate sinu mälu ühikumahust (digit span).</p>
-    
-        <p>Tsükkel koosneb järgnevatest osadest:</p>
-        
-        <ol>
-            <li>
-                Sulle näidatakse ühe ülesehitusega täidetud näidiskalendrit, kus on 22 sündmust. 
-                Su ülesandeks on kolme minuti vältel võimalikult suur osa neist sündmustest ning nende toimumisaegadest meelde jätta.
-            </li>
-            <li>
-                Peale näidiskalendri meelde jätmist tuleb sul lahendada mõned lihtsad arvutusülesanded.
-            </li>
-            <li>
-                <strong>Kalendri täitmine:</strong> tsükli viimase osana tuleb sul need samad sündmused sama ülesehitusega, kuid tühjendatud kalendrisse õigetele toimumisaegadele liigutada. Abiks on nimekiri kõigist 22 sündmusest.
-            </li>
-        </ol>
-    
-        <p>Tsükkel kordub seejärel kolm korda identselt (täidetud kalender, arvutusülesanded, ise kalendri täitmine).</p>
-        
-        <p class="note">NB! Katse on kujundatud viisil, mis teeb maksimaalse tulemuse saamise ebatõenäoliseks. Katse eesmärgiks ei ole täiuslik lõpplahendus, vaid mälu treenimine.</p> 
-          
-        <button type="submit">Alusta</button>
-      </form>
+        <form id="participantForm">
+            <div class="form-group">
+              <label for="key">Sulle määratud ID:</label><br>
+              <input type="text" id="key" name="key" required><br>
+            </div>
+            <button type="submit">Edasi</button> <!-- Button to go to page 4 -->
+        </form>
     </div>
+
+    <div id="page4" class="page">
+      <h2>Eksperimendi üksikasjad</h2>
+          <p>Eksperiment algab lühikese mäluharjutusega, millele järgneb nelja kordusega tsükkel.</p>
+          <p>Mäluharjutus annab meile parema ülevaate sinu mälu ühikumahust (digit span).</p>
+          <p>Tsükkel koosneb järgnevatest osadest:</p>
+          <ol>
+            <li>
+              Sulle näidatakse ühe ülesehitusega täidetud näidiskalendrit, kus on 22 sündmust.
+              Su ülesandeks on kolme minuti vältel võimalikult suur osa neist sündmustest ning nende toimumisaegadest meelde jätta.
+            </li>
+            <li>
+              Peale näidiskalendri meelde jätmist tuleb sul lahendada mõned lihtsad arvutusülesanded.
+            </li>
+            <li>
+              <strong>Kalendri täitmine:</strong> tsükli viimase osana tuleb sul need samad sündmused sama ülesehitusega, kuid tühjendatud kalendrisse õigetele toimumisaegadele liigutada. Abiks on nimekiri kõigist 22 sündmusest.
+            </li>
+          </ol>
+          <p>Tsükkel kordub seejärel kolm korda identselt (täidetud kalender, arvutusülesanded, ise kalendri täitmine).</p>
+          <p class="note">NB! Katse on kujundatud viisil, mis teeb maksimaalse tulemuse saamise ebatõenäoliseks. Katse eesmärgiks ei ole täiuslik lõpplahendus, vaid mälu treenimine.</p>
+        <div class="form-group">
+          <button onclick="window.location.href='numberMemory.html';">Alusta</button>
+        </div>
+    </div>
+
+
   </div>
   <script>
   sessionStorage.setItem("learning", "true");
-  // Prevent form submission and redirect
   document.getElementById("participantForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent the default form submission
     const participantID = document.getElementById("key").value;
-    sessionStorage.setItem("participantID", participantID);
-    window.location.href = "numberMemory.html"; // Redirect to numberMemory.html
-  });
+    if (participantID.trim() !== "") {
+      sessionStorage.setItem("participantID", participantID); // Store the ID in sessionStorage
+      nextPage(4); // Redirect to the next page (numberMemory.html)
+    } else {
+      alert("Palun sisestage oma ID, et jätkata."); // Show an alert if the ID is not filled
+  }
+});
 </script>
  <script src="script.js"></script>
 

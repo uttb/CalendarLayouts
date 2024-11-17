@@ -263,3 +263,19 @@ form input {
   font-weight: bold;
   font-size: 1rem;
 }
+.form-group {
+  margin-bottom: 20px;
+}
+
+ul {
+  margin-left: 20px;
+  font-size: 1em;
+  font-style: italic;
+}
+
+li {
+  margin-bottom: 10px;
+  color: #333;
+  text-align: left;
+}
+
