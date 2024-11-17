@@ -1,58 +1,34 @@
 window.onload = async () => {
-    const isParticipantInNovelGroup = window.location.pathname.endsWith("novelCalendarMemorization.html"); 
-    
-    const numberOfEvents = 22; // to debug generation set to 91
+    const pageName = 'calendarTask';
 
-    const calendarCells = document.getElementById("calendarContainer").getElementsByTagName("td");
-    const cellsWithEvents = []
-    if (isParticipantInNovelGroup) {
-        const blockedCells = []
+    const visitCount = sessionStorage.getItem(pageName) || 0;
+    const eventLayoutOrder = JSON.parse(sessionStorage.getItem("eventLayoutOrder")) || ['A', 'B', 'C', 'D'];
+    const eventLayout = eventLayoutOrder[visitCount] || 'A'
 
-        for(let i = 0; i < 73; i+=18) {
-            blockedCells.push(i + 0, i + 3, i + 11, i + 14, i + 17)
-        }
-        blockedCells.push(90, 93, 96, 99, 110, 113, 116, 119, 122, 125);
+    shuffle(eventTitles);
 
-        for(let i = 0; i < numberOfEvents; i++) {
-            let randomCell;
-            do {
-                randomCell = Math.floor(Math.random() * 126);
-            } while (blockedCells.includes(randomCell) || cellsWithEvents.includes(randomCell));
-            cellsWithEvents.push(randomCell);
-        }
-    } else {
-        for(let i = 0; i < numberOfEvents; i++) {
-            let randomCell;
-            do {
-                randomCell = Math.floor(Math.random() * 91);
-            } while (cellsWithEvents.includes(randomCell));
-            cellsWithEvents.push(randomCell);
-        }
-    }
-
-    for (const cellWithEvent of cellsWithEvents) {
+    for(eventId of eventLayouts[eventLayout]) {
+        const cell = document.getElementById(eventId);
         const eventTitle = eventTitles.pop();
-        calendarCells[cellWithEvent].style.setProperty("background-color", "#4477CC");
-        calendarCells[cellWithEvent].style.setProperty("color", "white");
-        calendarCells[cellWithEvent].innerHTML = calendarCells[cellWithEvent].innerHTML + ` <span style="font-weight:bold">${eventTitle}</span>`;
-        calendarCells[cellWithEvent].dataset.eventName = eventTitle;
+        cell.style.setProperty("background-color", "#4477CC");
+        cell.style.setProperty("color", "white");
+        cell.innerHTML = cell.innerHTML + ` <span style="font-weight:bold">${eventTitle}</span>`;
+        cell.dataset.eventName = eventTitle;
     }
 
     const generatedCalendar = {}
     const cells = document.getElementsByTagName("td");
     for(cell of cells) {
-        if (cell.id == "") {
+        if (cell.id == "" || cell.dataset?.eventName == undefined) {
             continue;
         }
-        generatedCalendar[cell.id] = cell.dataset?.eventName ? cell.dataset.eventName : false;
-
+        generatedCalendar[cell.dataset.eventName] = cell.id
     }
-
-    console.log(generatedCalendar); // TODO replace with proper handling
 
     let results = JSON.parse(sessionStorage.getItem("results"));
     results.calendarTasks.push({
-        tasks: generatedCalendar,
+        eventLayout: eventLayout,
+        task: generatedCalendar,
         answers: []
     });
     sessionStorage.setItem("results", JSON.stringify(results));
