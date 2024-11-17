@@ -153,7 +153,7 @@ const showContinueButton = () => {
     const observer = new MutationObserver((mutations) => {
     if (element.childElementCount === 0) {
         const button = document.createElement("button");
-        button.textContent = "Continue";
+        button.textContent = "Jätka";
         button.id = "continueButton";
         button.addEventListener("click", handleContinueClick);
         element.appendChild(button);

@@ -3,20 +3,20 @@ const updateCountdown = (timeLeft) => {
     const minutes = 1 + Math.floor((timeLeft - 1) / 60);
 
     if(timeLeft <= 0) {
-        countdownElement.textContent = 'Please come to an end.';
+        countdownElement.textContent = 'Palun lõpetage.';
         countdownElement.style.color = "red";
-        console.log(`timeLeft: ${timeLeft}s (Please come to an end.)`);
+        console.log(`timeLeft: ${timeLeft}s (Palun lõpetage.)`);
         return;
     }
     if(timeLeft <= 10) {
-        countdownElement.textContent = 'Less than 10 seconds.';
+        countdownElement.textContent = 'Jäänud on alla 10 sekundi.';
         countdownElement.style.color = "red";
-        console.log(`timeLeft: ${timeLeft}s (Less than 10 seconds.)`);
+        console.log(`timeLeft: ${timeLeft}s (Jäänud on alla 10 sekundi.)`);
         return;
     }
-
-    countdownElement.textContent = `~ ${minutes} minutes`;
-    console.log(`timeLeft: ${timeLeft}s (~ ${minutes} minutes)`);
+    const minuteText = minutes === 1 ? "minut" : "minutit";
+    countdownElement.textContent = `~ ${minutes} ${minuteText}`;
+    console.log(`timeLeft: ${timeLeft}s (~ ${minutes} ${minuteText})`);
 }
 
 const startCountdown = (time, page) => {
