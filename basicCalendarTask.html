@@ -17,13 +17,13 @@
                         <table id="calendar">
                             <thead>
                                 <tr>
-                                    <th><strong>Monday</strong></th>
-                                    <th><strong>Tuesday</strong></th>
-                                    <th><strong>Wednesday</strong></th>
-                                    <th><strong>Thursday</strong></th>
-                                    <th><strong>Friday</strong></th>
-                                    <th><strong>Saturday</strong></th>
-                                    <th><strong>Sunday</strong></th>
+                                    <th><strong>Esmaspäev</strong></th>
+                                    <th><strong>Teisipäev</strong></th>
+                                    <th><strong>Kolmapäev</strong></th>
+                                    <th><strong>Neljapäev</strong></th>
+                                    <th><strong>Reede</strong></th>
+                                    <th><strong>Laupäev</strong></th>
+                                    <th><strong>Pühapäev</strong></th>
                                 </tr>
                                 <tr>
                                     <td id="Mon_8" ondrop="dropOnCell(event)" ondragover="allowDrop(event)">8</td>
@@ -148,9 +148,10 @@
                 </div>
             </main>
             <aside>
-                <h3 class="dragTitle" >Drag and drop these events in the calendar</h3>
-                <p class="asideText">NB! Please place all the events in calendar. After that you can continue. Maximum time left:</p>
-                <p id="countdown" class="asideText countdown">~ 6 minutes</p>                <div class="dragEventContainer" id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
+                <h3 class="dragTitle" >Lohista ja aseta need sündmused kalendrisse</h3>
+                <p class="asideText">NB! Palun asetage KÕIK sündmused kalendrisse - ka siis, kui te ei mäleta, millal sündmus toimus. Pärast seda saate jätkata. Järelejäänud aeg:</p>
+                <p id="countdown" class="asideText countdown">~ 6 minutit</p>
+                <div class="dragEventContainer" id="eventList" ondrop="dropOnEventList(event)" ondragover="allowDrop(event)">
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event1">Event</div>
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event2">Event</div>
                     <div class="dragEvent" draggable="true" ondragstart="dragStartEvent(event)" id="event3">Event</div>
