@@ -26,11 +26,9 @@ window.onload = async () => {
     }
 
     let results = JSON.parse(sessionStorage.getItem("results"));
-    results.calendarTasks.push({
-        eventLayout: eventLayout,
+    results.calendarTask = {
         task: generatedCalendar,
-        answers: []
-    });
+    };
     sessionStorage.setItem("results", JSON.stringify(results));
 
     startCountdown(180, 'calculations.html');
