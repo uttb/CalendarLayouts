@@ -17,73 +17,73 @@ function checkAcceptance() {
 //     // Here you can add redirection or additional JS to start the experiment
 // };
 
-
-// For number recall memory test
+// For word recall memory test
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Script loaded'); // Debugging statement to ensure script is loaded
 
-    const sequenceLength = 10;
-    let numberSequence = [];
+    const wordsForRecall = ['kell', 'laud', 'põlv', 'põsk', 'järv', 'kass', 'kohv', 'lill', 
+                            'rand', 'saun', 'talu', 'vesi', 'jää', 'krunt', 'õlu', 'torn',
+                            'daam', 'keel', 'küla', 'laev', 'maal', 'proua', 'vein', 'vihm',
+                            'katse', 'määr', 'näide', 'suund', 'edu', 'ilu', 'õigus', 'oskus',
+                            'soov', 'tõde', 'tõsi', 'tulu', 'aeg', 'etapp', 'minek', 'mõju',
+                            'hetk', 'kasum', 'komme', 'mai', 'plaan', 'tehtu', 'tulek', 'usk']
+    const sequenceLength = 15;
+    let wordSequence = [];
 
-
-    function generateNumberSequence(length) {
-        const sequence = [];
-        for (let i = 0; i < length; i++) {
-            sequence.push(Math.floor(Math.random() * 10));
-        }
-        console.log('Generated sequence:', sequence); // Debugging statement
-        return sequence;
+    // words do not repeat
+    function getRandomWords(words, length) {
+        const shuffled = [...words].sort(() => 0.5 - Math.random()); // Create a copy of the array and shuffle it
+        return shuffled.slice(0, length);
     }
 
-    function displayDigitsOneByOne(sequence) {
-        const numberSequenceDiv = document.getElementById('numberSequence');
+    function displayWordsOneByOne(sequence) {
+        const wordSequenceDiv = document.getElementById('wordSequence');
         let index = 0;
 
-        function displayNextDigit() {
+        function displayNextWord() {
             if (index < sequence.length) {
-                numberSequenceDiv.innerText = sequence[index];
-                console.log('Displaying digit:', sequence[index]); // Debugging statement
+                wordSequenceDiv.innerText = sequence[index];
+                console.log('Displaying word:', sequence[index]); // Debugging statement
                 index++;
                 setTimeout(() => {
-                    numberSequenceDiv.innerText = ''; // Clear the digit briefly
-                    setTimeout(displayNextDigit, 200); // Pause for 200ms before showing the next digit
-                }, 1000); // Display each digit for 1000ms
+                    wordSequenceDiv.innerText = ''; // Clear the word briefly
+                    setTimeout(displayNextWord, 200); // Pause for 200ms before showing the next word
+                }, 3000); // Display each word for 3000ms
             } else {
-                numberSequenceDiv.style.display = 'none';
-                displayRecallInputs(sequence.length);
+                wordSequenceDiv.style.display = 'none';
+                displayRecallInput();
             }
         }
 
-        displayNextDigit();
+        displayNextWord();
     }
 
-    function displayRecallInputs(length) {
+    function displayRecallInput() {
+        const instructionText = document.querySelector('p');
+        instructionText.textContent = 'Sisesta meelde jäänud sõnad ning eralda need tühikute või komadega. Sõnade järjekord võib erineda.';
+
         const recallSection = document.getElementById('recallSection');
         recallSection.innerHTML = ''; // Clear previous content
-        for (let i = 0; i < length; i++) {
-            const input = document.createElement('input');
-            input.type = 'text';
-            input.maxLength = 1;
-            input.classList.add('recall-input');
-            input.dataset.index = i;
-            recallSection.appendChild(input);
-        }
+        const textarea = document.createElement('textarea');
+        textarea.classList.add('recall-textarea');
+        textarea.rows = 10; // Set the number of rows
+        textarea.cols = 50; // Set the number of columns
+        recallSection.appendChild(textarea);
         recallSection.style.display = 'block';
-        document.querySelector('.recall-input').focus();
+        textarea.focus();
         document.getElementById('submitRecall').style.display = 'block';
-        console.log('Displayed recall inputs'); // Debugging statement
-    }
+        console.log('Displayed recall input'); // Debugging statement
 
-    function handleInput(event) {
-        const input = event.target;
-        const index = parseInt(input.dataset.index, 10);
-        if (input.value.length === 1 && index < sequenceLength - 1) {
-            document.querySelector(`.recall-input[data-index="${index + 1}"]`).focus();
-        }
+        recallTimer = setTimeout(() => {
+            checkUserRecall();
+            loadRandomLayout();
+            loadTaskMemorization();
+        }, 60000); // Automatically submit the recall answers after 60 seconds
     }
 
     function checkUserRecall() {
-        const userInput = Array.from(document.querySelectorAll('.recall-input')).map(input => parseInt(input.value, 10));
+        const textarea = document.querySelector('.recall-textarea');
+        const userInput = textarea.value.split(/[\s,]+/).filter(word => word.length > 0);
         console.log('User input:', userInput); // Debugging statement
 
         // store results in sessionStorage
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
             participantId: null,
             layout: null,
             recallTask: {
-                task: numberSequence,
+                task: wordSequence,
                 answer: userInput,
             },
             calendarTasks : [],
@@ -120,8 +120,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     document.getElementById('startTask').addEventListener('click', function() {
-        numberSequence = generateNumberSequence(sequenceLength);
-        displayDigitsOneByOne(numberSequence);
+        wordSequence = getRandomWords(wordsForRecall, sequenceLength);
+        displayWordsOneByOne(wordSequence);
         document.getElementById('startTask').style.display = 'none';
     });
 
@@ -129,7 +129,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submitRecall').addEventListener('click', function() {
         checkUserRecall();
         loadRandomLayout();
-        loadTask();
+        loadTaskMemorization();
     });
     document.getElementById('recallSection').addEventListener('input', handleInput);
 });
