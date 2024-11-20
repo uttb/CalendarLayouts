@@ -125,26 +125,74 @@ const dropOnEventList = (ev) => {
     logEvent(eventName, 'eventList');
 }
 
-const handleContinueClick = () => {
+const submitJsonData = async (json) => {
+    console.log("submitting data to endpoint:")
+    console.log(json);
+
+    const response = await fetch("https://komm.cs.ut.ee/calendarexp2024", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(json)
+    })
+
+    if(!response.ok) {
+        console.log("failed to submitJsonData");
+    }
+}
+
+const handleContinueClick = async () => {
     taskData.endTimeStamp = Date.now();
 
-    console.log(taskData); // TODO replace with proper handling
-    let results = JSON.parse(sessionStorage.getItem("results"));
-    results.calendarTasks[results.calendarTasks.length - 1].answers.push(taskData);
-    sessionStorage.setItem("results", JSON.stringify(results));
+    const results = JSON.parse(sessionStorage.getItem("results"));
+    results.calendarTask.answer = taskData;
+    sessionStorage.setItem("results", JSON.stringify({}));
 
     const visitCount = sessionStorage.getItem(pageName) || 0;
+
+    /*
+    Structure of json data
+    {
+        project: "calendarexp2024",
+        participantID: "1234",
+        dataset: 1,
+        eventLayoutOrder: ["A", "B", "C", "D"],
+        layout: "novelCalendar",
+        recallTask: {},
+        calculationTask: {},
+        calendarTask: {
+            task: {},
+            answer: {
+                events: {},
+                startTimeStamp: 1,
+                endTimeStamp: 2,
+            }
+        }
+    }
+    */
+   
+    const json = {
+        project: "calendarexp2024",
+        participantID: sessionStorage.getItem("participantID"),
+        dataset: visitCount - 1,
+        eventLayoutOrder: JSON.parse(sessionStorage.getItem("eventLayoutOrder")),
+        layout: sessionStorage.getItem('selectedLayout'),
+        ...results
+    }
+
+    await submitJsonData(json);
+    // uncomment to debug 
+    // downloadResults(json);
+
     // Check if the visit count has reached 3
     if (visitCount >= 5) {
-        downloadResults();
         // Redirect to 'endPages.html' when button is clicked
         window.location.href = "closingPages.html";
     } else {
         // Redirect to 'inBetween.html' when button is clicked
         window.location.href = "inBetween.html";
     }
-    
-    // TODO broken :( window.saveResults(); 
 }
 
 const showContinueButton = () => {
@@ -196,20 +244,9 @@ const logEvent = (eventName, dropId) => {
     );
 }
 
-// Download results as a JSON file
-function downloadResults() {
-    const participantId = JSON.parse(JSON.stringify(sessionStorage.getItem('participantID')));
-    const results = JSON.parse(sessionStorage.getItem('results'));
-    const layout = sessionStorage.getItem('selectedLayout');
-    results.layout = layout;
-    results.participantId = participantId;
-
-    if (!results) {
-        console.error('No results found in sessionStorage');
-        return;
-    }
-
-    const blob = new Blob([JSON.stringify(results, null, 2)], { type: 'application/json' });
+// Download results as a JSON file - only used for debugging purposes
+function downloadResults(json) {
+    const blob = new Blob([JSON.stringify(json, null, 2)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
