@@ -88,14 +88,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // store results in sessionStorage
         let results = {
-            participantId: null,
-            layout: null,
             recallTask: {
                 task: wordSequence,
                 answer: userInput,
             },
-            calendarTasks : [],
-            calculationTasks: []
+            calendarTask : {},
+            calculationTask: {}
         };
         sessionStorage.setItem("results", JSON.stringify(results));
     }
@@ -197,10 +195,10 @@ document.addEventListener('DOMContentLoaded', function() {
         } else {
             clearInterval(timer);
             let results = JSON.parse(sessionStorage.getItem("results"));
-            results.calculationTasks.push({
+            results.calculationTask = {
                 tasks: calculationTasks,
                 answers: anwers
-            });
+            };
             sessionStorage.setItem("results", JSON.stringify(results));
             loadTask(); // Move to the next page when the timer runs out
         }
@@ -214,10 +212,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 clearInterval(timer);
                 console.log('Time is up!'); // Debugging statement
                 const results = JSON.parse(sessionStorage.getItem("results"));
-                results.calculationTasks.push({
+                results.calculationTask = {
                     tasks: calculationTasks,
                     answers: anwers
-                });
+                };
                 sessionStorage.setItem("results", JSON.stringify(results));
                 loadTask(); // Move to the next page when the timer runs out
             }
