@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
         recallTimer = setTimeout(() => {
             checkUserRecall();
             loadRandomLayout();
-            loadTaskMemorization();
+            loadTask();
         }, 60000); // Automatically submit the recall answers after 60 seconds
     }
 
@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('submitRecall').addEventListener('click', function() {
         checkUserRecall();
         loadRandomLayout();
-        loadTaskMemorization();
+        loadTask();
     });
     document.getElementById('recallSection').addEventListener('input', handleInput);
 });
