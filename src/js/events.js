@@ -140,12 +140,12 @@ const eventTitles = [
 ];
 
 const learningEvents =  [
-    "Reede, 15:00",
-    "Esmaspäev, 20:00",
-    "Pühapäev, 8:00",
-    "Laupäev, 19:00",
-    "Teisipäev, 11:00",
-    "Kolmapäev, 14:00",
-    "Neljapäev, 15:00"
+    "R, 15:00",
+    "E, 20:00",
+    "P, 8:00",
+    "L, 19:00",
+    "T, 11:00",
+    "K, 14:00",
+    "N, 15:00"
 ]
 shuffle(eventTitles);
