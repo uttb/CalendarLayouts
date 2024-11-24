@@ -31,7 +31,7 @@ window.onload = () => {
       if (sessionStorage.getItem("learning") === "true") {
         const asideTextElement = document.querySelector(".asideText");
         if (asideTextElement) {
-            asideTextElement.textContent = "Palun saa tuttavaks antud kalendriga. Proovi asetada antud sündmused õigele kohale.";
+            asideTextElement.textContent = "Palun saa tuttavaks antud kalendriga. Proovi asetada antud sündmused õigele kohale. Selle ülesande vastuseid ei salvestata - selle eesmärk on kalendriga tutvumine.";
         }
         startCountdown(120, 'startingExperiment.html');
     } else {
