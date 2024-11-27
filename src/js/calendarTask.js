@@ -126,8 +126,8 @@ const dropOnEventList = (ev) => {
 }
 
 const submitJsonData = async (json) => {
-    console.log("submitting data to endpoint:")
-    console.log(json);
+    // console.log("submitting data to endpoint:")
+    // console.log(json);
 
     const response = await fetch("https://komm.cs.ut.ee/calendarexp2024", {
         method: "POST",
@@ -219,7 +219,7 @@ const updatePageCount = () => {
     let visitCount = sessionStorage.getItem(pageName) || 0;
     taskData.taskNumber = visitCount;
     visitCount = parseInt(visitCount) + 1;
-    console.log("visit count", visitCount)
+    // console.log("visit count", visitCount)
     // Update the count in localStorage
     sessionStorage.setItem(pageName, visitCount);
 }
@@ -255,5 +255,5 @@ function downloadResults(json) {
     a.click();
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
-    console.log('Results downloaded as JSON file'); // Debugging statement
+    // console.log('Results downloaded as JSON file'); // Debugging statement
 }

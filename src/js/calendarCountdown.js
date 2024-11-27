@@ -5,18 +5,18 @@ const updateCountdown = (timeLeft) => {
     if(timeLeft <= 0) {
         countdownElement.textContent = 'Palun lõpetage.';
         countdownElement.style.color = "red";
-        console.log(`timeLeft: ${timeLeft}s (Palun lõpetage.)`);
+        // console.log(`timeLeft: ${timeLeft}s (Palun lõpetage.)`);
         return;
     }
     if(timeLeft <= 10) {
         countdownElement.textContent = 'Jäänud on alla 10 sekundi.';
         countdownElement.style.color = "red";
-        console.log(`timeLeft: ${timeLeft}s (Jäänud on alla 10 sekundi.)`);
+        // console.log(`timeLeft: ${timeLeft}s (Jäänud on alla 10 sekundi.)`);
         return;
     }
     const minuteText = minutes === 1 ? "minut" : "minutit";
     countdownElement.textContent = `~ ${minutes} ${minuteText}`;
-    console.log(`timeLeft: ${timeLeft}s (~ ${minutes} ${minuteText})`);
+    // console.log(`timeLeft: ${timeLeft}s (~ ${minutes} ${minuteText})`);
 }
 
 const startCountdown = (time, page) => {

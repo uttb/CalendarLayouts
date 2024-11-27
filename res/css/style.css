@@ -206,8 +206,21 @@ form input {
   margin: 5px;
 }
 
+#recallTimer {
+  margin-bottom: 20px;
+}
+
 
 /* Style for the simple calculations page */
+#calculationTimer {
+  margin-bottom: 20px;
+}
+
+.calculations {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
 .task {
   margin-bottom: 10px;
 }

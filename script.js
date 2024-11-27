@@ -17,9 +17,33 @@ function checkAcceptance() {
 //     // Here you can add redirection or additional JS to start the experiment
 // };
 
+// Function to update the timer display
+function updateTimerDisplay(timerElement, timeLeft) {
+    if (timeLeft <= 1) {
+        timerElement.innerText = `Jäänud on ${timeLeft} sekund.`;
+    } else {
+        timerElement.innerText = `Jäänud on ${timeLeft} sekundit.`;
+    }
+}
+
+// Function to start a timer
+function startTimer(duration, timerElement, callback) {
+    let timeLeft = duration;
+    updateTimerDisplay(timerElement, timeLeft);
+
+    const timerInterval = setInterval(() => {
+        timeLeft--;
+        updateTimerDisplay(timerElement, timeLeft);
+
+        if (timeLeft <= 0) {
+            clearInterval(timerInterval);
+            callback();
+        }
+    }, 1000);
+}
+
 // For word recall memory test
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded'); // Debugging statement to ensure script is loaded
 
     const wordsForRecall = ['kell', 'laud', 'põlv', 'põsk', 'järv', 'kass', 'kohv', 'lill', 
                             'rand', 'saun', 'talu', 'vesi', 'jää', 'krunt', 'õlu', 'torn',
@@ -43,12 +67,12 @@ document.addEventListener('DOMContentLoaded', function() {
         function displayNextWord() {
             if (index < sequence.length) {
                 wordSequenceDiv.innerText = sequence[index];
-                console.log('Displaying word:', sequence[index]); // Debugging statement
+                // console.log('Displaying word:', sequence[index]); // Debugging statement
                 index++;
                 setTimeout(() => {
                     wordSequenceDiv.innerText = ''; // Clear the word briefly
-                    setTimeout(displayNextWord, 200); // Pause for 200ms before showing the next word
-                }, 3000); // Display each word for 3000ms
+                    setTimeout(displayNextWord, 500); // Pause for 500ms before showing the next word
+                }, 1500); // Display each word for 1500ms
             } else {
                 wordSequenceDiv.style.display = 'none';
                 displayRecallInput();
@@ -72,19 +96,25 @@ document.addEventListener('DOMContentLoaded', function() {
         recallSection.style.display = 'block';
         textarea.focus();
         document.getElementById('submitRecall').style.display = 'block';
-        console.log('Displayed recall input'); // Debugging statement
 
-        recallTimer = setTimeout(() => {
+        const recallTimerElement = document.getElementById('recallTimer');
+        startTimer(60, recallTimerElement, () => {
             checkUserRecall();
             loadRandomLayout();
             loadTask();
-        }, 60000); // Automatically submit the recall answers after 60 seconds
+        });
+
+        // recallTimer = setTimeout(() => {
+        //     checkUserRecall();
+        //     loadRandomLayout();
+        //     loadTask();
+        // }, 60000); // Automatically submit the recall answers after 60 seconds
     }
 
     function checkUserRecall() {
         const textarea = document.querySelector('.recall-textarea');
         const userInput = textarea.value.split(/[\s,]+/).filter(word => word.length > 0);
-        console.log('User input:', userInput); // Debugging statement
+        // console.log('User input:', userInput); // Debugging statement
 
         // store results in sessionStorage
         let results = {
@@ -135,21 +165,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // For the simple calcalution task
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Script loaded'); // Debugging statement to ensure script is loaded
 
     const operators = ['+', '-'];
     let calculationTasks = [];
     let currentTaskIndex = 0;
     let timer;
     let timeLeft = 25; // the duration of calculation tasks
-    let anwers = [];
+    let answers = [];
 
     function generateRandomNumber(max) {
         return Math.floor(Math.random() * max) + 1;
     }
 
     function generateTask() {
-        const taskLength = Math.floor(Math.random() * 4) + 2; // Random length between 2 and 5
+        const taskLength = 3 // Math.floor(Math.random() * 4) + 2; // Random length between 2 and 5
         let task = `${generateRandomNumber(20)}`;
         for (let i = 1; i < taskLength; i++) {
             const operator = operators[Math.floor(Math.random() * operators.length)];
@@ -157,7 +186,7 @@ document.addEventListener('DOMContentLoaded', function() {
             task += ` ${operator} ${num}`;
         }
         calculationTasks.push(task);
-        console.log('Generated task:', task); // Debugging statement
+        // console.log('Generated task:', task); // Debugging statement
         return task;
     }
 
@@ -185,8 +214,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitAnswer() {
         const input = document.querySelector('.answer');
         const answer = input ? input.value : '';
-        console.log('Submitted answer:', answer); // Debugging statement
-        anwers.push(answer);
+        // console.log('Submitted answer:', answer); // Debugging statement
+        answers.push(answer);
 
         currentTaskIndex++;
         if (timeLeft > 0) {
@@ -197,29 +226,25 @@ document.addEventListener('DOMContentLoaded', function() {
             let results = JSON.parse(sessionStorage.getItem("results"));
             results.calculationTask = {
                 tasks: calculationTasks,
-                answers: anwers
+                answers: answers
             };
             sessionStorage.setItem("results", JSON.stringify(results));
             loadTask(); // Move to the next page when the timer runs out
         }
     }
 
-    function startTimer(duration) {
-        timeLeft = duration;
-        timer = setInterval(() => {
-            timeLeft--;
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                console.log('Time is up!'); // Debugging statement
-                const results = JSON.parse(sessionStorage.getItem("results"));
-                results.calculationTask = {
-                    tasks: calculationTasks,
-                    answers: anwers
-                };
-                sessionStorage.setItem("results", JSON.stringify(results));
-                loadTask(); // Move to the next page when the timer runs out
-            }
-        }, 1000);
+    function startCalculationsTimer(duration) {
+        const calculationTimerElement = document.getElementById('calculationTimer');
+        startTimer(25, calculationTimerElement, () => {
+            clearInterval(timer);
+            const results = JSON.parse(sessionStorage.getItem("results"));
+            results.calculationTask = {
+                tasks: calculationTasks,
+                answers: answers
+            };
+            sessionStorage.setItem("results", JSON.stringify(results));
+            loadTask(); // Move to the next page when the timer runs out
+        });
     }
 
     // Event listener for the calculation task
@@ -228,8 +253,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize tasks and start the timer for the calculation task
     const initialTask = generateTask();
     displayTask(initialTask);
-    startTimer(25); // Start a 25-second timer
+    startCalculationsTimer(25); // Start a 25-second timer
 });
+
 
 const dropArea = document.getElementById('dropArea');
 const fileList = document.getElementById('fileList');
