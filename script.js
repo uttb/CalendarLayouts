@@ -10,13 +10,6 @@ function checkAcceptance() {
     document.getElementById('page2Next').disabled = !termsAccepted;
 }
 
-// // Form submission handler - if we process with this architecture, it should lead to the next page
-// document.getElementById('participantForm').onsubmit = function(event) {
-//     event.preventDefault();
-//     alert('Thank you! The experiment will now begin.');
-//     // Here you can add redirection or additional JS to start the experiment
-// };
-
 // Function to update the timer display
 function updateTimerDisplay(timerElement, timeLeft) {
     if (timeLeft <= 1) {
@@ -99,16 +92,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const recallTimerElement = document.getElementById('recallTimer');
         startTimer(60, recallTimerElement, () => {
-            checkUserRecall();
-            loadRandomLayout();
-            loadTask();
+            recallTimerElement.textContent = 'Palun lõpetage.';
+            recallTimerElement.style.color = "red";
         });
-
-        // recallTimer = setTimeout(() => {
-        //     checkUserRecall();
-        //     loadRandomLayout();
-        //     loadTask();
-        // }, 60000); // Automatically submit the recall answers after 60 seconds
     }
 
     function checkUserRecall() {
