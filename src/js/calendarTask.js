@@ -8,37 +8,42 @@ const taskData = {
 
 const shuffleDragEvents = () => {
     const dragEvents = document.getElementsByClassName("dragEvent");
+
+    for(let i = 0; i < dragEvents.length; i++) {
+        dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
+        dragEvents[i].textContent = eventTitles.pop();
+    }
+}
+
+const placeLearningDragEvents = () => {
+    const dragEvents = document.getElementsByClassName("dragEvent");
     const learningLength = learningEvents.length
-    if (sessionStorage.getItem("learning") === "true") {
-        for (let i = 0; i < dragEvents.length; i++) {
-                if (i < learningLength) {
-                    dragEvents[i].id = `dragEvent_${learningLength - learningEvents.length}`;
-                    dragEvents[i].textContent = learningEvents.pop();
-                } else {
-                    dragEvents[i].style.display = "none";
-                }
+    const defaultEventsNumber = dragEvents.length
+
+    for (let i = 0; i < defaultEventsNumber; i++) {
+        if (i < learningLength) {
+            dragEvents[i].id = `dragEvent-${learningEvents[i].id}`;
+            dragEvents[i].textContent = learningEvents[i].name;
+        } else {
+            dragEvents[learningLength].remove();
         }
-        sessionStorage.setItem("learning", "false");}
-        else {
-            for(let i = 0; i < dragEvents.length; i++) {
-                dragEvents[i].id = `dragEvent_${22 - eventTitles.length}`;
-                dragEvents[i].textContent = eventTitles.pop();
-            }
-        }
-        }
+    }
+}
 
 window.onload = () => {
-      if (sessionStorage.getItem("learning") === "true") {
+    if (sessionStorage.getItem("learning") === "true") {
         const asideTextElement = document.querySelector(".asideText");
         if (asideTextElement) {
             asideTextElement.textContent = "Palun saa tuttavaks antud kalendriga. Proovi asetada antud sündmused õigele kohale. Selle ülesande vastuseid ei salvestata - selle eesmärk on kalendriga tutvumine.";
         }
-        startCountdown(120, 'startingExperiment.html');
+        startCountdown(120);
+        placeLearningDragEvents();
+        showContinueButton(handleLearningContinueClick);
     } else {
         startCountdown(360);
+        shuffleDragEvents();
+        showContinueButton(handleContinueClick);
     }
-    shuffleDragEvents();
-    showContinueButton();
     updatePageCount();
     taskData.startTimeStamp = Date.now();
 }
@@ -88,6 +93,19 @@ const dropOnCell = (ev) => {
     cell.innerHTML = cell.innerHTML + ` <span style="font-weight:bold">${eventName}</span>`;
     cell.style.setProperty("background-color", "#4477CC");
     cell.style.setProperty("color", "white");
+
+    // check if event was dropped to correct location on learning page
+    if (sessionStorage.getItem("learning") === "true") {
+        const learningEvent = learningEvents.find((learningEvent) => learningEvent.id == eventId.split("-")[1]);
+        
+        if(cell.id == eventId.split("-")[1]) {
+            learningEvent.correct = true;
+            cell.style.setProperty("background-color", "#4C961B");
+        } else {
+            learningEvent.correct = false;
+            cell.style.setProperty("background-color", "#E86E2A");
+        }
+    }
 
     // make cell draggable
     cell.draggable = true;
@@ -140,6 +158,16 @@ const submitJsonData = async (json) => {
     if(!response.ok) {
         console.log("failed to submitJsonData");
     }
+}
+
+const handleLearningContinueClick = () => {
+    if(learningEvents.filter((learningEvent) => !learningEvent.correct).length != 0) {
+        window.alert("You did not place all events at the correct place.\nHint: Wrong events are highlited red.");
+        return;
+    }
+
+    sessionStorage.setItem("learning", "false");
+    window.location.href = "startingExperiment.html"
 }
 
 const handleContinueClick = async () => {
@@ -195,7 +223,7 @@ const handleContinueClick = async () => {
     }
 }
 
-const showContinueButton = () => {
+const showContinueButton = (continueClickFunction) => {
     const element = document.getElementById("eventList");
 
     const observer = new MutationObserver((mutations) => {
@@ -203,7 +231,7 @@ const showContinueButton = () => {
         const button = document.createElement("button");
         button.textContent = "Jätka";
         button.id = "continueButton";
-        button.addEventListener("click", handleContinueClick);
+        button.addEventListener("click", continueClickFunction);
         element.appendChild(button);
         element.setAttribute("ondragover", null);
         element.setAttribute("ondrop", null);

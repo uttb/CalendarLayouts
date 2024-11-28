@@ -140,12 +140,41 @@ const eventTitles = [
 ];
 
 const learningEvents =  [
-    "R, 15:00",
-    "E, 20:00",
-    "P, 8:00",
-    "L, 19:00",
-    "T, 11:00",
-    "K, 14:00",
-    "N, 15:00"
-]
+    {
+        id: "Fri_15",
+        name: "R, 15:00",
+        correct: false
+    },
+    {
+        id: "Mon_20",
+        name: "E, 20:00",
+        correct: false
+    },
+    {
+        id: "Sun_8",
+        name: "P, 8:00",
+        correct: false
+    },
+    {
+        id: "Sat_19",
+        name: "L, 19:00",
+        correct: false
+    },
+    {
+        id: "Tue_11",
+        name: "T, 11:00",
+        correct: false
+    },
+    {
+        id: "Wed_14",
+        name: "K, 14:00",
+        correct: false
+    },
+    {
+        id: "Thu_15",
+        name: "N, 15:00",
+        correct: false
+    }
+];
+
 shuffle(eventTitles);
