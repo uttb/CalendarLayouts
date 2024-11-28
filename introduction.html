@@ -18,14 +18,13 @@
 
         <p><strong>Eksperimendi tulemusi kasutatakse ainult antud teadustöö eesmärgil.</strong></p>
 
-        <p>Eksperimendis osalemine võtab ligikaudu <strong>tund aega (60 minutit)</strong>, kus nelja
-mälukatsega mõõdetakse erinevate ajast mõtlemise viiside efektiivsust.</p>
+        <p>Eksperimendis osalemine võtab ligikaudu <strong>1h15min aega (75 minutit)</strong>.</p>
         <p><strong>Uuringu võimalikud ebamugavused</strong>: Katses kasutatav ülesanne nõuab vaimset pingutust.</p>
 
-        <p>Palume teil osalemise ajaks viibida vaikses keskkonnas, kus saate kindlad olla, et teie sooritust ei segata ega katkestata.</p>
+        <p>Palume teil osalemise ajaks viibida vaikses keskkonnas, et teie sooritus ei oleks häiritud.</p>
 
-        <p><strong>Uuringus osalemine on vabatahtlik, tasustamata ja sul on õigus igal ajal osalemine
-katkestada. Lisaks võid nõuda oma katseandmete kohest hävitamist.</strong></p>
+        <p><strong>Uuringus osalemine on vabatahtlik, tasustamata ja teil on õigus igal ajal osalemine
+katkestada. Lisaks võite nõuda oma katseandmete kohest hävitamist.</strong></p>
         <p>Uuring on kooskõlastatud Tartu Ülikooli inimuuringute eetika komiteega.</p>
       <button onclick="nextPage(2)">Edasi</button>
     </div>
@@ -51,7 +50,7 @@ katkestada. Lisaks võid nõuda oma katseandmete kohest hävitamist.</strong></p
         </ul>
        <div class="terms-container">
         <input type="checkbox" id="acceptTerms" onchange="document.getElementById('page2Next').disabled = !this.checked">
-        <label for="acceptTerms">Olen informeeritud ülalmainitud uuringust ja ma olen teadlik läbiviidava uurimistöö eesmärgist ja uuringu
+        <label for="acceptTerms">Olen informeeritud ülalmainitud uuringust ja läbiviidava uurimistöö eesmärgist, uuringu
 metoodikast ning uuringuga seotud võimalikest ebamugavustest.</label>
       </div>
 
@@ -62,9 +61,10 @@ metoodikast ning uuringuga seotud võimalikest ebamugavustest.</label>
     <div id="page3" class="page">
       <h2>Küsimustik</h2>
       <div class="survey-section">
-          <p><strong>Alustuseks palun klikkige alloleval lingil ja täitke küsimustik.</strong></p>
+          <p><strong>Alustuseks palun klikkige alloleval lingil ja täitke küsimustik.
+            <span style="color: red;">Küsimustiku lõpetamisel määratakse sulle ID</span></strong></p>
           <p>Andmebaasi salvestatakse vaid anonüümsed katseandmed (näiteks vanus, sugu ja vastused katseküsimustele). IP-aadresse samuti ei salvestata.</p>
-        <a href="https://survey.ut.ee/index.php/236917?lang=et" target="_blank">Klikki siia, et täita küsimustik</a>
+        <a href="https://survey.ut.ee/index.php/236917?lang=et" target="_blank">Kliki siia, et täita küsimustik</a>
       </div>
         <form id="participantForm">
             <div class="form-group">
@@ -77,22 +77,9 @@ metoodikast ning uuringuga seotud võimalikest ebamugavustest.</label>
 
     <div id="page4" class="page">
       <h2>Eksperimendi üksikasjad</h2>
-          <p>Eksperiment algab lühikese mäluharjutusega, millele järgneb nelja kordusega tsükkel.</p>
-          <p><strong>Mäluharjutus</strong> aitab meil hinnnata sinu lühimälu võimeksut. Ekraanile ilmuvad sõnad ükshaaval – proovi need meelde jätta ja sisesta seejärel vastavasse lahtrisse.</p>
-            <p><strong>Tsükkel</strong> koosneb järgnevatest osadest:</p>
-          <ol>
-            <li>
-              Sulle näidatakse ühe ülesehitusega täidetud näidiskalendrit, kus on 22 sündmust.
-              Su ülesandeks on kolme minuti vältel võimalikult suur osa neist sündmustest ning nende toimumisaegadest meelde jätta.
-            </li>
-            <li>
-              Peale näidiskalendri meelde jätmist tuleb sul lahendada mõned lihtsad arvutusülesanded.
-            </li>
-            <li>
-              <strong>Kalendri täitmine:</strong> tsükli viimase osana tuleb sul need samad sündmused sama ülesehitusega, kuid tühjendatud kalendrisse õigetele toimumisaegadele liigutada. Abiks on nimekiri kõigist 22 sündmusest.
-            </li>
-          </ol>
-          <p>Tsükkel kordub seejärel kolm korda identselt (täidetud kalender, arvutusülesanded, ise kalendri täitmine).</p>
+          <p>Eksperiment jaguneb lühimälu mahtu hindavaks osaks ning pikaajalist mälumahtu hindavaks osaks.</p>
+
+          <p>NB! Katse on kujundatud viisil, mis teeb maksimaalse tulemuse saamise ebatõenäoliseks.<strong> Katse eesmärgiks ei ole täiuslik lõpplahendus, vaid mälu treenimine</strong>.</p>
           <p class="note">NB! Katse on kujundatud viisil, mis teeb maksimaalse tulemuse saamise ebatõenäoliseks. Katse eesmärgiks ei ole täiuslik lõpplahendus, vaid mälu treenimine.</p>
         <div class="form-group">
           <button onclick="window.location.href='wordMemory.html';">Alusta</button>
