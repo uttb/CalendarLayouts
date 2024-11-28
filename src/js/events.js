@@ -135,7 +135,7 @@ const eventTitles = [
     "PILATES",
     "MASSAAŽ",
     "UINAK",
-    "TANTSIMINE",
+    "HOKI",
     "ETENDUS"
 ];
 
