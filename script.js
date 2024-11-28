@@ -143,17 +143,17 @@ document.addEventListener('DOMContentLoaded', function() {
         wordSequence = getRandomWords(wordsForRecall, sequenceLength);
         displayWordsOneByOne(wordSequence);
     }
-    
+
     document.getElementById('startTask').addEventListener('click', startWordMemoryTask);
 
     // Event listener for submitting the recall answers
     document.getElementById('submitRecall').addEventListener('click', function() {
         checkUserRecall();
+        window.location.href = "taskIntroductions.html"
         loadRandomLayout();
-        loadTask();
     });
     document.getElementById('recallSection').addEventListener('input', handleInput);
-});
+    });
 
 
 // For the simple calcalution task
