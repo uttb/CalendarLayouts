@@ -100,10 +100,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const recallTimerElement = document.getElementById('recallTimer');
         startTimer(60, recallTimerElement, () => {
             checkUserRecall();
-            loadRandomLayout();
-            loadTask();
+            window.location.href = "taskIntroductions.html"
+           // loadRandomLayout();
+          //  loadTask();
         });
-
         // recallTimer = setTimeout(() => {
         //     checkUserRecall();
         //     loadRandomLayout();
@@ -150,17 +150,18 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('startTask').addEventListener('click', function() {
         wordSequence = getRandomWords(wordsForRecall, sequenceLength);
         displayWordsOneByOne(wordSequence);
+        document.getElementById('wordMemoryIntro').innerHTML = 'Proovi jäta meelde ekraanil ilmuvad sõnad';
         document.getElementById('startTask').style.display = 'none';
     });
 
     // Event listener for submitting the recall answers
     document.getElementById('submitRecall').addEventListener('click', function() {
         checkUserRecall();
+        window.location.href = "taskIntroductions.html"
         loadRandomLayout();
-        loadTask();
     });
     document.getElementById('recallSection').addEventListener('input', handleInput);
-});
+    });
 
 
 // For the simple calcalution task
@@ -322,4 +323,3 @@ function loadTaskMemorization() {
         window.location.href = "basicCalendarMemorization.html";
     }
 }
-
