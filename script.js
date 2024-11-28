@@ -10,13 +10,6 @@ function checkAcceptance() {
     document.getElementById('page2Next').disabled = !termsAccepted;
 }
 
-// // Form submission handler - if we process with this architecture, it should lead to the next page
-// document.getElementById('participantForm').onsubmit = function(event) {
-//     event.preventDefault();
-//     alert('Thank you! The experiment will now begin.');
-//     // Here you can add redirection or additional JS to start the experiment
-// };
-
 // Function to update the timer display
 function updateTimerDisplay(timerElement, timeLeft) {
     if (timeLeft <= 1) {
@@ -83,9 +76,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function displayRecallInput() {
-        const instructionText = document.querySelector('p');
-        instructionText.textContent = 'Sisesta meelde jäänud sõnad ning eralda need tühikute või komadega. Sõnade järjekord võib erineda.';
-
+        const instructionText = document.getElementById('instructionText');
+        instructionText.style.display = 'block';
         const recallSection = document.getElementById('recallSection');
         recallSection.innerHTML = ''; // Clear previous content
         const textarea = document.createElement('textarea');
@@ -99,16 +91,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         const recallTimerElement = document.getElementById('recallTimer');
         startTimer(60, recallTimerElement, () => {
-            checkUserRecall();
-            window.location.href = "taskIntroductions.html"
-           // loadRandomLayout();
-          //  loadTask();
+            recallTimerElement.textContent = 'Palun lõpetage.';
+            recallTimerElement.style.color = "red";
         });
-        // recallTimer = setTimeout(() => {
-        //     checkUserRecall();
-        //     loadRandomLayout();
-        //     loadTask();
-        // }, 60000); // Automatically submit the recall answers after 60 seconds
     }
 
     function checkUserRecall() {
@@ -146,13 +131,20 @@ document.addEventListener('DOMContentLoaded', function() {
         // Navigate to the chosen layout
        // window.location.href = randomLayout;
     }
-    
-    document.getElementById('startTask').addEventListener('click', function() {
+
+    // Function to start the word memory task
+    function startWordMemoryTask() {
+        // Clear the title and the paragraph
+        document.querySelector('h1').style.display = 'none';
+        document.querySelector('p').style.display = 'none';
+        document.getElementById('startTask').style.display = 'none';
+
+        // Start the task
         wordSequence = getRandomWords(wordsForRecall, sequenceLength);
         displayWordsOneByOne(wordSequence);
-        document.getElementById('wordMemoryIntro').innerHTML = 'Proovi jäta meelde ekraanil ilmuvad sõnad';
-        document.getElementById('startTask').style.display = 'none';
-    });
+    }
+
+    document.getElementById('startTask').addEventListener('click', startWordMemoryTask);
 
     // Event listener for submitting the recall answers
     document.getElementById('submitRecall').addEventListener('click', function() {
@@ -178,17 +170,23 @@ document.addEventListener('DOMContentLoaded', function() {
         return Math.floor(Math.random() * max) + 1;
     }
 
+    function generateRandomOperator() {
+        return operators[Math.floor(Math.random() * operators.length)];
+    }
+
     function generateTask() {
-        const taskLength = 3 // Math.floor(Math.random() * 4) + 2; // Random length between 2 and 5
-        let task = `${generateRandomNumber(20)}`;
-        for (let i = 1; i < taskLength; i++) {
-            const operator = operators[Math.floor(Math.random() * operators.length)];
-            const num = generateRandomNumber(20);
-            task += ` ${operator} ${num}`;
-        }
-        calculationTasks.push(task);
-        // console.log('Generated task:', task); // Debugging statement
-        return task;
+        let num1, num2, num3, operator1, operator2, result;
+
+        do {
+            num1 = generateRandomNumber(20);
+            num2 = generateRandomNumber(20);
+            num3 = generateRandomNumber(20);
+            operator1 = generateRandomOperator();
+            operator2 = generateRandomOperator();
+            result = eval(`${num1} ${operator1} ${num2} ${operator2} ${num3}`);
+        } while (result < 0);
+
+        return `${num1} ${operator1} ${num2} ${operator2} ${num3}`;
     }
 
     function displayTask(task) {
@@ -323,3 +321,4 @@ function loadTaskMemorization() {
         window.location.href = "basicCalendarMemorization.html";
     }
 }
+

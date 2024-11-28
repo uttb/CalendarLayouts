@@ -192,7 +192,9 @@ form input {
 .word-sequence {
   font-size: 2em;
   margin-bottom: 20px;
-  height: 1.5em;
+  height: 50px; /* Set a fixed height */
+  width: 100px; /* Set a fixed width */
+  text-align: center;
 }
 
 .recall-section {
