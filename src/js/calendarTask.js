@@ -162,7 +162,7 @@ const submitJsonData = async (json) => {
 
 const handleLearningContinueClick = () => {
     if(learningEvents.filter((learningEvent) => !learningEvent.correct).length != 0) {
-        window.alert("You did not place all events at the correct place.\nHint: Wrong events are highlited red.");
+        window.alert("Oled mõned sündmused kalendrisse valesti asetanud. \nVihje: valel kohal asuvad sündmused on tähistatud punasega.");
         return;
     }
 
