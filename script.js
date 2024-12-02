@@ -208,6 +208,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitAnswer();
             }
         });
+
+        calculationTasks.push(task)
     }
 
     function submitAnswer() {
