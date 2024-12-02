@@ -208,8 +208,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitAnswer();
             }
         });
-
-        calculationTasks.push(task)
     }
 
     function submitAnswer() {
@@ -221,6 +219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         currentTaskIndex++;
         if (timeLeft > 0) {
             const newTask = generateTask();
+            calculationTasks.push(newTask)
             displayTask(newTask);
         } else {
             clearInterval(timer);
